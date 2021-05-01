@@ -1,4 +1,6 @@
+import { Locales } from '../LocalizationConstants';
 
+export const LOCALIZATION_NAMESPACE = 'locale';
 /* ------------- Initial State ------------- */
 
 export const INITIAL_STATE = {

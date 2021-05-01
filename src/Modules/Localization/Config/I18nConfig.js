@@ -1,7 +1,6 @@
 import I18n from 'i18n-js';
 
-import english from './Translations/English';
-import turkish from './Translations/Turkish';
+import { English, Turkish } from './TextNames'
 
 import { Locales } from '../LocalizationConstants';
 
@@ -12,8 +11,8 @@ I18n.fallbacks = true;
 I18n.locales.no = Locales.turkish;
 
 I18n.translations = {
-    [Locales.english]: english,
-    [Locales.turkish]: turkish,
+    [Locales.english]: English,
+    [Locales.turkish]: Turkish,
 };
 
 export default I18n;

@@ -1,5 +1,5 @@
 const Images = {
-    appLogoLarge: require('./logo-large.png'),
+    appLogoLarge: require('../Assets/Images/logo-large.png'),
    
 
 };
