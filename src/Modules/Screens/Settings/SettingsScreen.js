@@ -5,8 +5,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useDispatchChangeTheme, useTheme, useThemedValues, useThemedOption } from '../../Theming';
 import { useLocalization, Texts, useLocaleOptions, useLocale, useDispatchChangeLocale } from '../../Localization';
 import OptionMenu from './Components/OptionMenu';
+import { userSelector, signOutRequest } from '../../Auth/Redux/UserRedux';
 
 import getStyles from '../Settings/Styles/SettingsScreenStyles';
+
 
 
 const SettingsScreen = props => {
@@ -34,15 +36,15 @@ const SettingsScreen = props => {
     const _onPress_SignOut = () => {
         dispatch(signOutRequest());
     }
-
+    const user = useSelector(userSelector);
     return (
         <View style={styles.container}>
             <SafeAreaView style={{flex: 1}}>
                 <Text style={styles.nameText}>
-                    X
+                    {user.displayName}
                 </Text>
                 <Text style={styles.emailText}>
-                    x@mail.com
+                    {user.email}
                 </Text>
                 <View style={styles.menusContainer}>
                     <OptionMenu

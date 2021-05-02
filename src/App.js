@@ -12,21 +12,21 @@
  import { PersistGate } from 'redux-persist/integration/react';
  
  import createStore from './Redux/CreateStore';
- import MainNavigation from './Modules/Navigation/MainNavigation';
- 
+ import  MainNavigation from './Modules/Navigation/MainNavigation';
+ import { LoadingManager} from './Modules/Loading';
  
  const { store, persistor } = createStore();
  
  const App = () => {
  
    return (
-     <Provider store={store}>
-       <PersistGate loading={null} persistor={persistor}>
-         <MainNavigation />
-       </PersistGate>
-     </Provider>
-   );
- 
+    <Provider store={store}>
+    <PersistGate loading={null} persistor={persistor}>
+      <LoadingManager />
+      <MainNavigation />
+    </PersistGate>
+  </Provider>
+   )
  };
  
  export default App;

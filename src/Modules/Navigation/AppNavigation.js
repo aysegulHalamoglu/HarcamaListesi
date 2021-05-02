@@ -3,7 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import SettingsScreen from '../Screens/Settings/SettingsScreen';
 //import HomeScreen from '../Screens/Home/HomeScreen';
 import { useLocalization, Texts } from '../Localization';
-import { colorNames, useThemedColors } from '../Theming';
+import { useThemedColors } from '../Theming';
 
 const AppStack = createStackNavigator();
 
@@ -17,7 +17,7 @@ const AppNavigation = () => {
                 name = "settings-screen"
                 component = {SettingsScreen}
                 options = {{
-                    title: 'Settings',
+                    title: loc.t(Texts.settings),
                 }}
             />
         </AppStack.Navigator>

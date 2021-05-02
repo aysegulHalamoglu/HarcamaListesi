@@ -2,6 +2,7 @@
 const constantColors = {
     white: '#FFFFFF',
     black: '#000000',
+    red:'#B80000',
     transparent: 'transparent',
     mainColor1: '#30D086', // green
     mainColor2: '#FF7E39', // orange
@@ -51,6 +52,13 @@ const toRGBA = (hexCode, opacity) => {
         signOutButtonBox: 'settings/signOutButtonBox',
         signOutButtonText: 'settings/signOutButtonText',
     };
+
+    const header = {
+        background: 'header/background',
+        text: 'header/text',
+        backIcon: 'header/backIcon',
+        rightIcon: 'header/rightIcon',
+    };
     
 
 export const darkColors = {
@@ -76,6 +84,11 @@ export const darkColors = {
     [settings.signOutButtonBackground]: constantColors.transparent,
     [settings.signOutButtonBox]: constantColors.mainColor2,
     [settings.signOutButtonText]: constantColors.white,
+    // header
+    [header.background]: constantColors.mainColor1,
+    [header.text]: constantColors.greys[1],
+    [header.backIcon]: constantColors.greys[1],
+    [header.rightIcon]: constantColors.greys[1],
 };
 
 export const lightColors = {
@@ -86,10 +99,10 @@ export const lightColors = {
      [auth.inputText]: constantColors.white,
      [auth.inputPlaceholder]: toRGBA(constantColors.white, 60),
      [auth.coloredButtonBackground]: constantColors.white,
-     [auth.coloredButtonText]: constantColors.mainColor2,
+     [auth.coloredButtonText]: constantColors.red,
      [auth.paleButtonBackground]: constantColors.transparent,
      [auth.paleButtonText]: constantColors.white,
-     [auth.appNameText]: constantColors.white,
+     [auth.appNameText]: constantColors.red,
      // settings
      [settings.background]: constantColors.white,
      [settings.usernameText]: constantColors.black,
@@ -101,9 +114,15 @@ export const lightColors = {
      [settings.signOutButtonBackground]: constantColors.transparent,
      [settings.signOutButtonBox]: constantColors.mainColor2,
      [settings.signOutButtonText]: constantColors.black,
+     // header
+    [header.background]: constantColors.mainColor1,
+    [header.text]: constantColors.white,
+    [header.backIcon]: constantColors.white,
+    [header.rightIcon]: constantColors.white,
 };
 
 export const colorNames = {
     auth,
     settings,
+    header
     }
