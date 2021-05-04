@@ -20,7 +20,7 @@ import AuthButton from '../Components/AuthButton';
 import getStyles from '../Styles/AuthScreenStyles';
 import { useThemedStyles , colorNames , useThemedColors } from '../../Theming';
 import { Texts, useLocalization, useLocale } from '../../Localization';
-
+import {customUppercase} from '../../Localization/Utils/LocalUpperCase'
 
 const AuthScreenUI = props => {
 
@@ -30,8 +30,10 @@ const AuthScreenUI = props => {
     const loc = useLocalization();
 
     const locale = useLocale();
-    const loginUppercase = loc.t(Texts.login).toLocaleUpperCase(locale);
-    const signupUppercase = loc.t(Texts.signUp).toLocaleUpperCase(locale);
+    //custom uppercase to fix i to İ in turkish
+    const loginUppercase = customUppercase(loc.t(Texts.login), locale);
+    const signupUppercase = customUppercase(loc.t(Texts.signUp), locale);
+
 
     return (
         <SafeAreaView style={styles.safeArea}>
