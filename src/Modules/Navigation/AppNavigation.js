@@ -4,6 +4,7 @@ import SettingsScreen from '../Screens/Settings/SettingsScreen';
 //import HomeScreen from '../Screens/Home/HomeScreen';
 import { useLocalization, Texts } from '../Localization';
 import { useThemedColors } from '../Theming';
+import CategoriesScreen from '../Screens/Categories/CategoriesScreen';
 
 const AppStack = createStackNavigator();
 
@@ -14,8 +15,8 @@ const AppNavigation = () => {
     return (
         <AppStack.Navigator>
             <AppStack.Screen
-                name = "settings-screen"
-                component = {SettingsScreen}
+                name = "categories-screen"
+                component = {CategoriesScreen}
                 options = {{
                     title: loc.t(Texts.settings),
                 }}
