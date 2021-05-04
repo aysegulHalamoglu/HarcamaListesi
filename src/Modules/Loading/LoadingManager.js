@@ -11,8 +11,8 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center'
-    }
+        alignItems: 'center',
+    },
 })
 
 const LoadingManager = props => {
@@ -25,7 +25,7 @@ const LoadingManager = props => {
             style={styles.modal}
         >
             <View style={styles.container}>
-                <ActivityIndicator size="large" />
+                <ActivityIndicator size="large" color="#00ff00" />
             </View>
         </Modal>
     )

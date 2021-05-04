@@ -7,5 +7,15 @@ export const isValidEmail = email => {
         }
     };
 
+
     return validate({from: email}, constraints) === undefined;
+}
+
+export const isValidPasswordConfirm = passwordConfirm => {
+    let constraints = {
+        from: {
+            passwordConfirm: true
+        }
+    };
+    return validate({from: passwordConfirm}, constraints) === undefined;
 }

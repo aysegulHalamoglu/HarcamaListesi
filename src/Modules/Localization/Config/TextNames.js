@@ -1,6 +1,7 @@
 export const Texts = {
     email: 'email',
     password: 'password',
+    passwordConfirm: 'passwordConfirm',
     login: 'login',
     signUp: 'signUp',
     username: 'username',
@@ -17,6 +18,7 @@ export const Texts = {
 export const English = {
     [Texts.email]: 'E-mail',
     [Texts.password]: 'Password',
+    [Texts.passwordConfirm]: 'Enter confirm password',
     [Texts.login]: 'Login',
     [Texts.signUp]: 'Sign Up',
     [Texts.username]: 'Username',
@@ -33,6 +35,7 @@ export const English = {
 export const Turkish = {
     [Texts.email]: 'E-posta',
     [Texts.password]: 'Şifre',
+    [Texts.passwordConfirm]: 'Şifrenizi tekrar girin',
     [Texts.login]: 'Giriş Yap',
     [Texts.signUp]: 'Kayıt Ol',
     [Texts.username]: 'Kullanıcı Adı',

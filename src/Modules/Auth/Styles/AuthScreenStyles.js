@@ -13,10 +13,11 @@ const styles = (Colors) => StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'space-between',
-        paddingBottom: Metrics.width * 0.03,
+        paddingBottom: Metrics.width * 0.04,
         paddingHorizontal: Metrics.marginHorizontal,
 
     },
+   
     loadingOverlay: {
         backgroundColor: 'rgba(0,0,0,0.4)',
         position: 'absolute',
@@ -26,9 +27,10 @@ const styles = (Colors) => StyleSheet.create({
         justifyContent: 'center',
     },
     appLogoContainer: {
-        flex: 0.75,
+        flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+    
     },
     inputsContainer: {
         minHeight: Metrics.width * 0.5,
@@ -37,13 +39,13 @@ const styles = (Colors) => StyleSheet.create({
     buttonsContainer: {
         justifyContent: 'center',
     },
-    appNameContainer: {
+    footerContainer: {
         alignItems: 'center',
         justifyContent: 'flex-end',
     },
     image: {
         width: undefined,
-        height: '90%',
+        height: '65%',
         aspectRatio: 1,
         resizeMode: 'contain',
     },
@@ -60,10 +62,10 @@ const styles = (Colors) => StyleSheet.create({
         fontSize: Fonts.Sizes.eighteen,
         color: Colors[colorNames.auth.paleButtonText],
     },
-    appNameText: {
+    footer: {
         fontFamily: Fonts.Families.logo,
         fontSize: Fonts.Sizes.twenty,
-        color: Colors[colorNames.auth.appNameText],
+        color: Colors[colorNames.auth.footer],
         letterSpacing: Metrics.width * 0.02,
     },
 });

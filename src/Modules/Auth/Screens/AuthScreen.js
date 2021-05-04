@@ -7,6 +7,8 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { signInRequest, signUpRequest } from '../Redux/UserRedux';
 import { isValidEmail } from '../Utils/AuthValidations';
+import { isValidPasswordConfirm } from '../Utils/AuthValidations';
+
 
 const AuthScreen = props => {
 
@@ -19,24 +21,29 @@ const AuthScreen = props => {
     const dispatch = useDispatch();
 
     const _onPress_SignUp = () => {
-
-        if (email.length === 0 || password.length === 0 || name.length === 0) {
+        
+        if (email.length === 0 || password.length === 0 || passwordConfirm.length === 0||  name.length === 0) {
             Alert.alert('Uyarı', 'Lütfen tüm alanları doldurun.');
         }
-        else if (!isValidEmail(email)) {
+        else if (!isValidEmail(email) ) {
             Alert.alert('Uyarı', 'Lütfen e-posta adresinizi kontrol edin.');
+        }
+        else if (!isValidPasswordConfirm(passwordConfirm)) {
+            Alert.alert('Uyarı', 'Lütfen şifre girişlerinizi kontrol edin.');
         }
         else {
             dispatch(signUpRequest(email, password, name));
         }
+        
     }
 
+
     const _onPress_SignIn = () => {
-        if (email.length === 0 || password.length === 0) {
+        if (email.length === 0 || password.length === 0 || passwordConfirm.length === 0) {
             Alert.alert('Uyarı', 'Lütfen tüm alanları doldurun.');
         }
         else {
-            dispatch(signInRequest(email, password))
+            dispatch(signInRequest(email, password,passwordConfirm))
         }
     }
 

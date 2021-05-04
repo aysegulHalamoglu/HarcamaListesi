@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 
 import {
     Image,
@@ -9,6 +9,7 @@ import {
     TouchableOpacity,
     Keyboard,
     Platform,
+    StyleSheet,
 } from 'react-native';
 
 import { Images } from '../../Constants';
@@ -19,6 +20,7 @@ import AuthButton from '../Components/AuthButton';
 import getStyles from '../Styles/AuthScreenStyles';
 import { useThemedStyles } from '../../Theming';
 import { Texts, useLocalization, useLocale } from '../../Localization';
+import { colorNames } from '../../Theming/Colors';
 
 const AuthScreenUI = props => {
 
@@ -32,20 +34,25 @@ const AuthScreenUI = props => {
 
     return (
         <SafeAreaView style={styles.safeArea}>
-            <KeyboardAvoidingView 
-                style={styles.keyboardAvoiding} 
-                behavior={Platform.OS === 'ios' ? 'padding' : null} 
+            <KeyboardAvoidingView
+                style={styles.keyboardAvoiding}
+                behavior={Platform.OS === 'ios' ? 'padding' : null}
                 keyboardVerticalOffset={0}>
-                <TouchableOpacity 
+                <TouchableOpacity
                     style={styles.container}
                     activeOpacity={1}
                     onPress={Keyboard.dismiss}
-                    >
+
+                >
+                    <View style={StyleSheet.absoluteFillObject}>
+                        <Image source={Images.backgroundImage} blurRadius={20} />
+                    </View>
+
                     <View style={styles.appLogoContainer}>
-                        <Image source={Images.appLogoLarge} style={styles.image} />
+                        <Image source={colorNames.auth.appLogoLarge} style={styles.image} />
                     </View>
                     <View style={styles.inputsContainer}>
-                    {
+                        {
                             isLogin ?
                                 null
                                 :
@@ -72,6 +79,14 @@ const AuthScreenUI = props => {
                                 placeholder={loc.t(Texts.password)}
                                 secureTextEntry={true} />
                         </View>
+                        <View style={styles.inputContainer}>
+                            <AuthInput
+                                value={props.passwordConfirmValue}
+                                onChangeText={props.onChangeText_PasswordConfirm}
+                                autoCapitalize={'none'}
+                                placeholder={loc.t(Texts.passwordConfirm)}
+                                secureTextEntry={true} />
+                        </View>
                     </View>
                     <View style={styles.buttonsContainer}>
                         <AuthButton
@@ -79,13 +94,13 @@ const AuthScreenUI = props => {
                             disabled={false}
                             text={isLogin ? loginUppercase : signupUppercase} />
                         <TouchableOpacity style={styles.signupTouchable} onPress={() => setIsLogin(!isLogin)}>
-                            <Text style={styles.signupText }>
+                            <Text style={styles.signupText}>
                                 {isLogin ? loc.t(Texts.signUp) : loc.t(Texts.login)}
                             </Text>
                         </TouchableOpacity>
                     </View>
-                    <View style={styles.appNameContainer}>
-                        <Text style={styles.appNameText}>HARCAMALARIM</Text>
+                    <View style={styles.footerContainer}>
+                        <Text style={styles.footer}></Text>
                     </View>
                 </TouchableOpacity>
             </KeyboardAvoidingView>
