@@ -47,7 +47,7 @@ const toRGBA = (hexCode, opacity) => {
         paleButtonBackground: 'auth/paleButtonBackground',
         paleButtonText: 'auth/paleButtonText',
         appNameText: 'auth/appNameText',
-        appLogoLarge: 'auth/appLogoLarge',
+        
     };
     const settings = {
         background: 'settings/background',
@@ -69,6 +69,9 @@ const toRGBA = (hexCode, opacity) => {
         rightIcon: 'header/rightIcon',
     };
     
+    const image = {
+        appLogoLarge: 'image/appLogoLarge',
+    };
 
 export const darkColors = {
     // auth
@@ -82,7 +85,6 @@ export const darkColors = {
     [auth.paleButtonBackground]: constantColors.transparent,
     [auth.paleButtonText]: constantColors.greys[1],
     [auth.appNameText]: constantColors.greys[1],
-    [auth.appLogoLarge]: Images.appLogoLargeDark ,
     // settings
     [settings.background]: constantColors.greys[1],
     [settings.usernameText]: constantColors.mainColor3,
@@ -99,41 +101,48 @@ export const darkColors = {
     [header.text]: constantColors.greys[1],
     [header.backIcon]: constantColors.greys[1],
     [header.rightIcon]: constantColors.greys[1],
+    // image
+    [image.appLogoLarge]: Images.appLogoLargeDark,
+    
 };
 
 export const lightColors = {
-     // auth
-     [auth.background]: constantColors.mainColor1,
-     [auth.inputBorder]: constantColors.white,
-     [auth.inputBackground]: toRGBA(constantColors.white, 20),
-     [auth.inputText]: constantColors.white,
-     [auth.inputPlaceholder]: toRGBA(constantColors.white, 60),
-     [auth.coloredButtonBackground]: constantColors.mainColor3,
-     [auth.coloredButtonText]: constantColors.white,
-     [auth.paleButtonBackground]: constantColors.transparent,
-     [auth.paleButtonText]: constantColors.white,
-     [auth.footer]: constantColors.red,
-     [auth.appLogoLarge]: Images.appLogoLargeLight ,
-     // settings
-     [settings.background]: constantColors.white,
-     [settings.usernameText]: constantColors.black,
-     [settings.userEmailText]: constantColors.black,
-     [settings.titleText]: constantColors.mainColor1,
-     [settings.radioButtonUnselectedIcon]: constantColors.greys[2],
-     [settings.radioButtonSelectedIcon]: constantColors.mainColor1,
-     [settings.radioButtonText]: constantColors.black,
-     [settings.signOutButtonBackground]: constantColors.transparent,
-     [settings.signOutButtonBox]: constantColors.mainColor1,
-     [settings.signOutButtonText]: constantColors.black,
-     // header
+    // auth
+    [auth.background]: constantColors.mainColor1,
+    [auth.inputBorder]: constantColors.white,
+    [auth.inputBackground]: toRGBA(constantColors.white, 20),
+    [auth.inputText]: constantColors.white,
+    [auth.inputPlaceholder]: toRGBA(constantColors.white, 60),
+    [auth.coloredButtonBackground]: constantColors.mainColor3,
+    [auth.coloredButtonText]: constantColors.white,
+    [auth.paleButtonBackground]: constantColors.transparent,
+    [auth.paleButtonText]: constantColors.white,
+    [auth.footer]: constantColors.red,
+
+    // settings
+    [settings.background]: constantColors.white,
+    [settings.usernameText]: constantColors.black,
+    [settings.userEmailText]: constantColors.black,
+    [settings.titleText]: constantColors.mainColor1,
+    [settings.radioButtonUnselectedIcon]: constantColors.greys[2],
+    [settings.radioButtonSelectedIcon]: constantColors.mainColor1,
+    [settings.radioButtonText]: constantColors.black,
+    [settings.signOutButtonBackground]: constantColors.transparent,
+    [settings.signOutButtonBox]: constantColors.mainColor1,
+    [settings.signOutButtonText]: constantColors.black,
+    // header
     [header.background]: constantColors.mainColor1,
     [header.text]: constantColors.white,
     [header.backIcon]: constantColors.white,
     [header.rightIcon]: constantColors.white,
+    // image
+    [image.appLogoLarge]: Images.appLogoLargeLight,
 };
 
 export const colorNames = {
     auth,
     settings,
-    header
+    header,
+    image,
+    
     }

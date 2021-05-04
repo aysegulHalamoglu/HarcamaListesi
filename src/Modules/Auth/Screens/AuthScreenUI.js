@@ -18,14 +18,15 @@ import AuthInput from '../Components/AuthInput';
 import AuthButton from '../Components/AuthButton';
 
 import getStyles from '../Styles/AuthScreenStyles';
-import { useThemedStyles } from '../../Theming';
+import { useThemedStyles , colorNames , useThemedColors } from '../../Theming';
 import { Texts, useLocalization, useLocale } from '../../Localization';
-import { colorNames } from '../../Theming/Colors';
+
 
 const AuthScreenUI = props => {
 
     const [isLogin, setIsLogin] = useState(true);
     const styles = useThemedStyles(getStyles);
+    const Colors = useThemedColors(getStyles);
     const loc = useLocalization();
 
     const locale = useLocale();
@@ -49,7 +50,7 @@ const AuthScreenUI = props => {
                     </View>
 
                     <View style={styles.appLogoContainer}>
-                        <Image source={colorNames.auth.appLogoLarge} style={styles.image} />
+                    <Image source={Colors[colorNames.image.appLogoLarge]} style={styles.image} />
                     </View>
                     <View style={styles.inputsContainer}>
                         {

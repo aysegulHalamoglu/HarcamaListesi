@@ -1,7 +1,8 @@
+const imagesLocation = '../Assets/Images/';
 const Images = {
-    appLogoLargeLight: require('../Assets/Images/logo-large.png'),
-    appLogoLargeDark: require('../Assets/Images//logo-large-dark.png'),
-    backgroundImage: require('../Assets/Images/background-image.jpg'),
+    appLogoLargeLight: require(imagesLocation + 'logo-large.png'),
+     appLogoLargeDark: require(imagesLocation + 'logo-large-dark.png'),
+      backgroundImage: require(imagesLocation +'background-image.jpg'),
 
 }
 
