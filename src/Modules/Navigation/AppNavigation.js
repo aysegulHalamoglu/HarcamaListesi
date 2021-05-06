@@ -4,7 +4,7 @@ import SettingsScreen from '../Screens/Settings/SettingsScreen';
 //import HomeScreen from '../Screens/Home/HomeScreen';
 import { useLocalization, Texts } from '../Localization';
 import { useThemedColors } from '../Theming';
-import CategoriesScreen from '../Screens/Categories/CategoriesScreen';
+import AddExpenseModal from '../Screens/Home/Components/AddExpenseModal';
 
 const AppStack = createStackNavigator();
 
@@ -15,8 +15,8 @@ const AppNavigation = () => {
     return (
         <AppStack.Navigator>
             <AppStack.Screen
-                name = "categories-screen"
-                component = {CategoriesScreen}
+                name = "addexpense-modal"
+                component = {AddExpenseModal}
                 options = {{
                     title: loc.t(Texts.settings),
                 }}

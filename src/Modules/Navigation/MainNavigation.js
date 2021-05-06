@@ -20,7 +20,7 @@ const MainNavigation = (props) => {
             <NavigationContainer>
             {
                     loggedInUser ?
-                    <SettingsNavigation />
+                    <AppNavigation />
                     :
                     <AuthNavigation/>
                 }

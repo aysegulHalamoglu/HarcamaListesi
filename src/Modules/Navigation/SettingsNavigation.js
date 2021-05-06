@@ -12,7 +12,7 @@ const SettingsNavigation = () => {
                 name="setting-screen"
                 component={SettingsScreen} 
                 options={{
-                    title: 'Kategoriler'
+                    title: 'Ayarlar'
                 }} />
         </SettingsStack.Navigator>
     );
