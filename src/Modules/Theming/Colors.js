@@ -2,7 +2,7 @@ import { Images } from "../Constants/index";
 
 
 // hex
-const constantColors = {
+export const constantColors = {
     white: '#FFFFFF',
     black: '#000000',
     red:'#B80000',
@@ -73,6 +73,13 @@ const toRGBA = (hexCode, opacity) => {
         appLogoLarge: 'image/appLogoLarge',
     };
 
+    const calendar = {
+        background: 'calendar/background',
+        selectedDateColor: 'calendar/selectedDateColor',
+        dateColor: 'calendar/dateColor',
+
+    };
+
 export const darkColors = {
     // auth
     [auth.background]: constantColors.mainColor1,
@@ -103,7 +110,10 @@ export const darkColors = {
     [header.rightIcon]: constantColors.greys[1],
     // image
     [image.appLogoLarge]: Images.appLogoLargeDark,
-    
+    // calendar
+    [calendar.background]:constantColors.greys[1],
+    [calendar.selectedDateColor]:constantColors.mainColor3,
+    [calendar.dateColor]:constantColors.mainColor3
 };
 
 export const lightColors = {
@@ -137,6 +147,10 @@ export const lightColors = {
     [header.rightIcon]: constantColors.white,
     // image
     [image.appLogoLarge]: Images.appLogoLargeLight,
+     // calendar
+     [calendar.background]:constantColors.white,
+     [calendar.selectedDateColor]:constantColors.mainColor3,
+     [calendar.dateColor]:constantColors.mainColor3
 };
 
 export const colorNames = {
@@ -144,5 +158,6 @@ export const colorNames = {
     settings,
     header,
     image,
-    
-    }
+    calendar,
+}
+

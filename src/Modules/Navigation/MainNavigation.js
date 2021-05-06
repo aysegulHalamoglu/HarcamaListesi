@@ -6,6 +6,7 @@ import AuthNavigation from './AuthNavigation';
 import { useSelector } from 'react-redux';
 import { userSelector } from '../../Modules/Auth/Redux/UserRedux';
 import { colorNames, ThemeModes, useTheme, useThemedColors } from '../Theming';
+import CalendarScreen from '../Screens/Calendar/CalendarScreen';
 
 const MainNavigation = (props) => {
     const loggedInUser = useSelector(userSelector);
@@ -18,7 +19,7 @@ const MainNavigation = (props) => {
             <NavigationContainer>
             {
                     loggedInUser ?
-                    <AppNavigation />
+                    <CalendarScreen />
                     :
                     <AuthNavigation/>
                 }
