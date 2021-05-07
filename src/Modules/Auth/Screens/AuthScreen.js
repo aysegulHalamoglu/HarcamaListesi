@@ -22,18 +22,19 @@ const AuthScreen = props => {
 
     const _onPress_SignUp = () => {
         
-        if (email.length === 0 || password.length === 0 || passwordConfirm.length === 0||  name.length === 0) {
+        if (email.length === 0 || password.length === 0 || passwordConfirm.length === 0||  name.length === 0 || password=== passwordConfirm) {
             Alert.alert('Uyarı', 'Lütfen tüm alanları doldurun.');
         }
         else if (!isValidEmail(email) ) {
             Alert.alert('Uyarı', 'Lütfen e-posta adresinizi kontrol edin.');
         }
-        else if (!isValidPasswordConfirm(passwordConfirm)) {
-            Alert.alert('Uyarı', 'Lütfen şifre girişlerinizi kontrol edin.');
+        else if (!isValidPasswordConfirm(passwordConfirm) ) {
+            Alert.alert('Uyarı', 'Şifreler eşleşmiyor: Lütfen kontrol edin.');
         }
         else {
             dispatch(signUpRequest(email, password, name));
         }
+
         
     }
 

@@ -1,10 +1,19 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
+
+//screen imports 
+import CalendarScreen from '../Screens/Calendar/CalendarScreen';
 import SettingsScreen from '../Screens/Settings/SettingsScreen';
 import HomeScreen from '../Screens/Home/HomeScreen';
+
+//component imports
+import AddExpenseModal from '../Screens/Home/Components/AddExpenseModal';
+
+
 import { useLocalization, Texts } from '../Localization';
 import { useThemedColors } from '../Theming';
-import AddExpenseModal from '../Screens/Home/Components/AddExpenseModal';
+
+
 
 const AppStack = createStackNavigator();
 
@@ -14,6 +23,15 @@ const AppNavigation = () => {
 
     return (
         <AppStack.Navigator>
+            
+            <AppStack.Screen
+                name = "calendar-screen"
+                component = {CalendarScreen}
+                options = {{
+                    title: loc.t(Texts.calendarHeader),
+                }}
+            />
+  
             <AppStack.Screen
                 name = "home-screen"
                 component = {HomeScreen}
@@ -21,13 +39,7 @@ const AppNavigation = () => {
                     title: loc.t(Texts.settings),
                 }}
             />
-            <AppStack.Screen
-                name = "addexpense-modal"
-                component = {AddExpenseModal}
-                options = {{
-                    title: loc.t(Texts.settings),
-                }}
-            />
+    
             <AppStack.Screen
                 name = "settings-screen"
                 component = {SettingsScreen}
