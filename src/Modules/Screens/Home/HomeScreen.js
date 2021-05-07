@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, FlatList, TouchableOpacity } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack'
+import { useDispatchChangeTheme, useTheme, useThemedValues, useThemedOption } from '../../Theming';
 
 
 import styles from './Styles/HomeScreenStyles';
@@ -57,7 +58,6 @@ const dummyCategories = [
 const HomeScreen = props => {
 
     const [isModalVisible, setIsModalVisible] = useState(false);
-
     const _renderCategoryItem = ({ item }) => {
         return (
             <CategoryItem data={item} />
@@ -65,7 +65,7 @@ const HomeScreen = props => {
     }
 
     const _onPress_AddExpenseModal = () => {
-        props.navigation.navigate('addexpense-modal')
+        setIsModalVisible(true);
     }
 
     const _onPress_Settings = () => {
@@ -134,9 +134,7 @@ const HomeScreen = props => {
                 // kapanış animasyonu
                 animationOut="fadeOut"
             >
-                <AddExpenseModal>
-
-                </AddExpenseModal>
+                <AddExpenseModal/>
             </Modal>
         </>
 

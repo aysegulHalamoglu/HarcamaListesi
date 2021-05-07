@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 import { Metrics, Fonts } from '../../../Constants';
 import { colorNames } from '../../../Theming';
 
-export default StyleSheet.create ({
+export default  StyleSheet.create ({
     container: {
         flex:1,
         backgroundColor: 'white',
@@ -39,5 +39,11 @@ export default StyleSheet.create ({
         alignItems: 'center',
         width: Metrics.width * 0.2,
         height: Metrics.width * 0.2,
+    },
+    modal: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        
+        
     }
 });
