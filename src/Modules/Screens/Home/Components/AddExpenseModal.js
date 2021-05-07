@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { View, TextInput, TouchableOpacity, Text} from 'react-native';
+import { View, TouchableOpacity, Text} from 'react-native';
+import { TextInput, Button } from 'react-native-paper';
 
 import styles from '../Styles/AddExpenseModalStyles';
 
@@ -53,6 +54,8 @@ const AddExpenseModal = props => {
         <View style={styles.container}>
             <View style={styles.inputBox}>
                 <TextInput style={styles.input}
+                    label="Alınanlar"
+                    mode="outlined"
                     placeholder="Harcama"
                     onChangeText={setItemName}
                     value={itemName}
@@ -60,6 +63,8 @@ const AddExpenseModal = props => {
             </View>
             <View style={styles.inputBox}>
                 <TextInput style={styles.input}
+                    label="Tutar"
+                    mode="outlined"
                     placeholder="Harcama Tutarını Giriniz."
                     onChangeText={setItemPrice}
                     value={itemPrice}
@@ -67,16 +72,18 @@ const AddExpenseModal = props => {
                     keyboardType="number-pad" />
             </View>
             <View style={styles.inputBox}>
-                <TextInput style={styles.input}
+                <TextInput 
+                    label="Açıklama"
+                    mode="outlined"
                     placeholder='Notunuzu ekleyiniz.'
                     onChangeText={setItemDetail}
                     value={itemDetail}
                     placeholderTextColor="rgba(0,0,0,0.3)" />
             </View>
             <TouchableOpacity style={styles.addButton} onPress={_onPress_AddExpense}>
-                <Text style={styles.addButtonText}>
-                    {itemKey ? 'KAYDET' : 'EKLE'}
-                </Text>
+                <Button color='red' mode="contained" onPress={() => console.log('Pressed')}>
+                    Ekle
+                </Button>
             </TouchableOpacity>
         </View>
     )

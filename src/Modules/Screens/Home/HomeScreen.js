@@ -1,7 +1,8 @@
-import React from 'react';
-import { View, Text, FlatList} from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, FlatList, TouchableOpacity } from 'react-native';
+import { createStackNavigator } from '@react-navigation/stack'
 
-import CategoryItem from './Components/CategoryItem';
+
 import styles from './Styles/HomeScreenStyles';
 import CategoryItem from './Components/CategoryItem';
 import Modal from 'react-native-modal';
@@ -53,65 +54,96 @@ const dummyCategories = [
 ]
 
 
-    const HomeScreen = props => {
+const HomeScreen = props => {
 
-        const _renderCategoryItem = ({item}) => {
-            return (
-                <CategoryItem data={item}/>
-            )
-        }
-    
-        const EmptyComponent = props => {
-            return <Text>Boş</Text>
-        }
+    const [isModalVisible, setIsModalVisible] = useState(false);
 
+    const _renderCategoryItem = ({ item }) => {
         return (
-            <>
-                <View style={styles.container}>
-                    <View style={styles.titleContainer}>
-                        {/* Title */}
-                        <Text>Kategoriler</Text>
-                    </View>
-                    <View style={styles.flatListContainer}>
-                        {/* CategoryList */}
-                        <FlatList
-                            ListEmptyComponent={EmptyComponent}
-                            // Render edilecek itemlerin listesi (array)
-                            data={dummyCategories}
-                            // Her bir itemin nasıl render edileceği (fonksiyon)
-                            renderItem={_renderCategoryItem}
-                            // Her bir itemin 'key'sinin ne olacağı (fonksiyon)
-                            keyExtractor={(item, index) => index}
-                            numColumns={2}
-                            style={styles.flatList}
-                            // Her bir sütunun container style'ı
-                            columnWrapperStyle={styles.columnWrapperStyle}
-                            // FlatList'in içindeki her şeyi kapsayan container style'ı
-                            contentContainerStyle={styles.contentContainerStyle}
-                        />
-                    </View>        
-                </View>
-                <Modal
-                    isVisible={isModalVisible}
-                    // arkaplana tıklayınca fonksiyonu
-                    onBackdropPress={_onPress_ModalBackdrop}
-                    style={styles.modal}
-                    // açılış animasyonu
-                    animationIn="fadeIn"
-                    // kapanış animasyonu
-                    animationOut="fadeOut"
-                >
-
-                    <AddExpenseModal>
-
-                    </AddExpenseModal>
-                </Modal>
-            </>
-                
-            
+            <CategoryItem data={item} />
         )
     }
-    
-    
 
-    export default HomeScreen;
+    const _onPress_AddExpenseModal = () => {
+        props.navigation.navigate('addexpense-modal')
+    }
+
+    const _onPress_Settings = () => {
+        props.navigation.navigate('settings-screen')
+    }
+
+    const _onPress_ModalBackdrop = () => {
+        setIsModalVisible(false);
+    }
+
+    const EmptyComponent = props => {
+        return <Text>Boş</Text>
+    }
+
+    return (
+        <>
+            <View style={styles.container}>
+                <View style={styles.titleContainer}>
+                    {/* Title */}
+                    <Text>Kategoriler</Text>
+                </View>
+                <View style={styles.flatListContainer}>
+                    {/* CategoryList */}
+                    <FlatList
+                        ListEmptyComponent={EmptyComponent}
+                        // Render edilecek itemlerin listesi (array)
+                        data={dummyCategories}
+                        // Her bir itemin nasıl render edileceği (fonksiyon)
+                        renderItem={_renderCategoryItem}
+                        // Her bir itemin 'key'sinin ne olacağı (fonksiyon)
+                        keyExtractor={(item, index) => item.categoryId}
+                        numColumns={2}
+                        style={styles.flatList}
+                        // Her bir sütunun container style'ı
+                        columnWrapperStyle={styles.columnWrapperStyle}
+                        // FlatList'in içindeki her şeyi kapsayan container style'ı
+                        contentContainerStyle={styles.contentContainerStyle}
+                    />
+                </View>
+                <View style={styles.buttonContainer}>
+                    <TouchableOpacity
+                        style={styles.touchable}
+                        onPress={_onPress_Settings}>
+                        <Text style={styles.text}>
+                            AS
+                        </Text>
+                    </TouchableOpacity>
+                </View>
+                <View style={styles.buttonContainer}> 
+                    <TouchableOpacity
+                        style={styles.touchable}
+                        onPress={_onPress_AddExpenseModal}>
+                        <Text style={styles.text}>
+                            YENİ
+                        </Text>
+                    </TouchableOpacity>
+                </View>
+            </View>
+            <Modal
+                isVisible={isModalVisible}
+                // arkaplana tıklayınca fonksiyonu
+                onBackdropPress={_onPress_ModalBackdrop}
+                style={styles.modal}
+                // açılış animasyonu
+                animationIn="fadeIn"
+                // kapanış animasyonu
+                animationOut="fadeOut"
+            >
+                <AddExpenseModal>
+
+                </AddExpenseModal>
+            </Modal>
+        </>
+
+
+    )
+}
+
+
+
+export default HomeScreen;

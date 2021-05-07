@@ -27,4 +27,17 @@ export default StyleSheet.create ({
         justifyContent: 'space-between',
         paddingBottom: Metrics.width * 0.03,
     },
+    buttonContainer: {
+        justifyContent: 'space-around', 
+        alignItems: 'flex-end',
+           
+    },
+    touchable: {
+        backgroundColor: 'lime',
+        borderRadius: Metrics.width * 0.2,
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: Metrics.width * 0.2,
+        height: Metrics.width * 0.2,
+    }
 });
