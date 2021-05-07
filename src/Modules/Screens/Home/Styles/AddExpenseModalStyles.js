@@ -9,6 +9,7 @@ export default StyleSheet.create({
         height: Metrics.width,
         borderRadius: Metrics.borderRadiusSmall,
         backgroundColor: 'white',
+        flex:0.75,
     },
     titleBox: {
         width: Metrics.width * 0.6,
@@ -16,17 +17,10 @@ export default StyleSheet.create({
         borderRadius: Metrics.borderRadiusSmall,
     },
     inputBox: {
-        borderRadius: Metrics.borderRadiusStandard,
-        backgroundColor: 'rgba(0,0,0,0.07)',
-        marginBottom: Metrics.width * 0.04,
-        paddingHorizontal: Metrics.width * 0.001,
-        paddingVertical: Metrics.width * 0.01,
+        
     },
     input: {
-        padding: 0,
-        fontFamily: Fonts.Families.medium,
-        fontSize: Fonts.Sizes.fourteen,
-        color: 'red',
+        
     },
     addButton: {
         backgroundColor: 'orange',

@@ -57,87 +57,18 @@ const dummyCategories = [
 
 const HomeScreen = props => {
 
-    const [isModalVisible, setIsModalVisible] = useState(false);
-    const _renderCategoryItem = ({ item }) => {
-        return (
-            <CategoryItem data={item} />
-        )
-    }
 
-    const _onPress_AddExpenseModal = () => {
-        setIsModalVisible(true);
-    }
-
-    const _onPress_Settings = () => {
-        props.navigation.navigate('settings-screen')
-    }
-
-    const _onPress_ModalBackdrop = () => {
-        setIsModalVisible(false);
-    }
-
-    const EmptyComponent = props => {
-        return <Text>Boş</Text>
-    }
 
     return (
-        <>
-            <View style={styles.container}>
-                <View style={styles.titleContainer}>
-                    {/* Title */}
-                    <Text>Kategoriler</Text>
-                </View>
-                <View style={styles.flatListContainer}>
-                    {/* CategoryList */}
-                    <FlatList
-                        ListEmptyComponent={EmptyComponent}
-                        // Render edilecek itemlerin listesi (array)
-                        data={dummyCategories}
-                        // Her bir itemin nasıl render edileceği (fonksiyon)
-                        renderItem={_renderCategoryItem}
-                        // Her bir itemin 'key'sinin ne olacağı (fonksiyon)
-                        keyExtractor={(item, index) => item.categoryId}
-                        numColumns={2}
-                        style={styles.flatList}
-                        // Her bir sütunun container style'ı
-                        columnWrapperStyle={styles.columnWrapperStyle}
-                        // FlatList'in içindeki her şeyi kapsayan container style'ı
-                        contentContainerStyle={styles.contentContainerStyle}
-                    />
-                </View>
-                <View style={styles.buttonContainer}>
-                    <TouchableOpacity
-                        style={styles.touchable}
-                        onPress={_onPress_Settings}>
-                        <Text style={styles.text}>
-                            AS
-                        </Text>
-                    </TouchableOpacity>
-                </View>
-                <View style={styles.buttonContainer}> 
-                    <TouchableOpacity
-                        style={styles.touchable}
-                        onPress={_onPress_AddExpenseModal}>
-                        <Text style={styles.text}>
-                            YENİ
-                        </Text>
-                    </TouchableOpacity>
-                </View>
-            </View>
-            <Modal
-                isVisible={isModalVisible}
-                // arkaplana tıklayınca fonksiyonu
-                onBackdropPress={_onPress_ModalBackdrop}
-                style={styles.modal}
-                // açılış animasyonu
-                animationIn="fadeIn"
-                // kapanış animasyonu
-                animationOut="fadeOut"
-            >
-                <AddExpenseModal/>
-            </Modal>
-        </>
-
+       <View style={styles.stackContainer}>
+           <View style={styles.profileContainer}>
+               <Text style={props.welcomeText}>Welcome</Text>
+               <Text style={props.profileName}>Semih BULUT</Text>
+           </View>
+           <View style={styles.settingsContainer}>
+                
+           </View>
+       </View>
 
     )
 }

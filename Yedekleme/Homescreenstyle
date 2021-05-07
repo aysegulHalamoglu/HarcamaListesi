@@ -3,37 +3,10 @@ import { Metrics, Fonts } from '../../../Constants';
 import { colorNames } from '../../../Theming';
 
 export default  StyleSheet.create ({
-    stackContainer: {
+    container: {
         flex:1,
-        flexDirection: 'row',
-        backgroundColor: '#F2F2F2',
+        backgroundColor: 'white',
         padding: Metrics.marginHorizontal,
-        justifyContent: 'space-around',
-        alignItems: 'center',
-    },
-    profileContainer: {
-        width: Metrics.width * 0.40,
-        height: Metrics.width * 0.20,
-        borderRadius: Metrics.borderRadiusStandard,
-        backgroundColor:'red',
-    },
-    welcomeText: {
-        fontFamily: Fonts.Families.light,
-        fontSize: 8,
-        color: '#202020',
-    },
-    profileName: {
-        fontFamily: Fonts.Families.semibold,
-        fontSize: Fonts.Sizes.twenty,
-        color: 'red',
-    },
-    settingsContainer: {
-        flexDirection: 'row',
-        width: Metrics.width * 0.1,
-        height: Metrics.width * 0.1,
-        borderRadius: Metrics.borderRadiusSmall,
-        backgroundColor: '#202020',
-
     },
     titleContainer: {
         paddingVertical: Metrics.paddingVertical,

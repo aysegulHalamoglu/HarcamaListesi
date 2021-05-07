@@ -25,6 +25,15 @@ const AppNavigation = () => {
         <AppStack.Navigator>
             
             <AppStack.Screen
+                name = "home-screen"
+                component = {HomeScreen}
+                options = {{
+                    title: loc.t(Texts.settings),
+                    headerShown: false,
+                }}
+            />
+            
+            <AppStack.Screen
                 name = "calendar-screen"
                 component = {CalendarScreen}
                 options = {{
@@ -32,14 +41,7 @@ const AppNavigation = () => {
                 }}
             />
   
-            <AppStack.Screen
-                name = "home-screen"
-                component = {HomeScreen}
-                options = {{
-                    title: loc.t(Texts.settings),
-                }}
-            />
-    
+                
             <AppStack.Screen
                 name = "settings-screen"
                 component = {SettingsScreen}
