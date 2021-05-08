@@ -2,76 +2,124 @@ import { StyleSheet } from 'react-native';
 import { Metrics, Fonts } from '../../../Constants';
 import { colorNames } from '../../../Theming';
 
-export default  StyleSheet.create ({
+export default StyleSheet.create ({
+
+    container: {
+        flex: 1,
+        //backgroundColor: '#F2F2F2',
+        flexDirection: 'column',
+        
+    },
+    text: {
+        fontFamily: Fonts.Families.semibold,
+        color: 'white',
+    },
+
+    //STACK NAVIGATION CONTAINER
+
     stackContainer: {
-        flex:1,
+        width: Metrics.width,
+        height: Metrics.width * 0.2,
         flexDirection: 'row',
-        backgroundColor: '#F2F2F2',
         padding: Metrics.marginHorizontal,
-        justifyContent: 'space-around',
+        justifyContent: 'space-between',
         alignItems: 'center',
+        marginTop: 20,
     },
     profileContainer: {
         width: Metrics.width * 0.40,
         height: Metrics.width * 0.20,
         borderRadius: Metrics.borderRadiusStandard,
-        backgroundColor:'red',
+        justifyContent: 'center',
     },
     welcomeText: {
         fontFamily: Fonts.Families.light,
-        fontSize: 8,
+        fontSize: 20,
         color: '#202020',
     },
     profileName: {
         fontFamily: Fonts.Families.semibold,
-        fontSize: Fonts.Sizes.twenty,
-        color: 'red',
+        fontSize: 25,
+        color: '#202020',
     },
-    settingsContainer: {
+    settingsIcon: {
         flexDirection: 'row',
-        width: Metrics.width * 0.1,
-        height: Metrics.width * 0.1,
+        width: Metrics.width * 0.15,
+        height: Metrics.width * 0.15,
         borderRadius: Metrics.borderRadiusSmall,
-        backgroundColor: '#202020',
+    },
 
+    //ACCOUNT CONTAINER
+    accountContainer: {
+        width: Metrics.width,
+        height: Metrics.width * 0.5,
+        //backgroundColor: 'red',
+        alignItems: 'center',
+        marginTop: 20,
     },
+    budgetCard: {
+        width: Metrics.width * 0.8,
+        height: Metrics.width * 0.5,
+        borderRadius: 50,
+        alignItems: 'center',
+        justifyContent: 'center',
+        
+    },
+    topCardContainer: {
+        width: Metrics.width * 0.8,
+        height: Metrics.width * 0.2,
+        alignItems: 'center',
+    },
+    bottomCardContainer: {
+        width: Metrics.width * 0.8,
+        height: Metrics.width * 0.2,
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        
+    },
+    incomeExpenseContainer: {
+        width: Metrics.width * 0.3,
+        height: Metrics.width * 0.15,
+    },
+
+    //TITLE CONTAINER
     titleContainer: {
-        paddingVertical: Metrics.paddingVertical,
-    },
-    flatListContainer: {
-        flexGrow: 1,
-        paddingTop: Metrics.paddingTop,
-    },
-    flatList: {
-        flex: 1,
-    },
-    contentContainerStyle: {
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    columnWrapperStyle: {
-        // backgroundColor: 'yellow',
+        width: Metrics.width,
+        height: Metrics.width * 0.15,
+        // backgroundColor: 'lime',
+        flexDirection: 'row',
         justifyContent: 'space-between',
-        paddingBottom: Metrics.width * 0.03,
+        alignItems: 'center'
     },
-    buttonContainer: {
-        justifyContent: 'space-around', 
-        alignItems: 'flex-end',
-           
+
+    titleText: {
+        fontSize: 35,
+        fontFamily: Fonts.Families.bold,
+        color: 'white',
+        marginLeft: 10,
     },
-    touchable: {
-        backgroundColor: 'lime',
-        borderRadius: Metrics.width * 0.2,
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: Metrics.width * 0.1,
-        height: Metrics.width * 0.1,
+    textButton: {
+        fontFamily: Fonts.Families.semibold,
+        fontSize: 12,
+        color: 'white',
+        marginRight: 25,
     },
-    modal: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        flex: 1,
-        
-        
+    
+    //FLATLIST CONTAINER
+    flatListContainer: {
+        width: Metrics.width,
+        height: Metrics.width * 0.85,
+    },
+    //TAB NAVIGATION CONTAINER
+    tabNavigationContainer : {
+        width: Metrics.width,
+        height: Metrics.width * 0.3,
+        borderTopLeftRadius: 75,
+        borderTopRightRadius: 75,
+        backgroundColor: 'white',
+        opacity: 0.7,       
+
     }
+
 });
