@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="70.126" height="70.126" viewBox="0 0 70.126 70.126">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#b4ff00"/>
+      <stop offset="0" stop-color="#e9ca00"/>
+      <stop offset="0.251" stop-color="#c0f300"/>
+      <stop offset="0.473" stop-color="#01bff1"/>
+      <stop offset="0.711" stop-color="#8523f2"/>
+      <stop offset="1" stop-color="#f20031"/>
+    </linearGradient>
+  </defs>
+  <path id="Icon_ionic-ios-add-circle" data-name="Icon ionic-ios-add-circle" d="M38.438,3.375A35.063,35.063,0,1,0,73.5,38.438,35.058,35.058,0,0,0,38.438,3.375Zm15.256,37.76H41.135V53.694a2.7,2.7,0,0,1-5.394,0V41.135H23.182a2.7,2.7,0,1,1,0-5.394H35.741V23.182a2.7,2.7,0,1,1,5.394,0V35.741H53.694a2.7,2.7,0,0,1,0,5.394Z" transform="translate(73.501 73.501) rotate(180)" fill="url(#linear-gradient)"/>
+</svg>

@@ -114,12 +114,21 @@ export default StyleSheet.create ({
     //TAB NAVIGATION CONTAINER
     tabNavigationContainer : {
         width: Metrics.width,
-        height: Metrics.width * 0.3,
+        height: Metrics.width * 0.21,
         borderTopLeftRadius: 75,
         borderTopRightRadius: 75,
         backgroundColor: 'white',
-        opacity: 0.7,       
-
-    }
+        opacity: 0.7,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',   
+    },
+    addButtonContainer: {
+        width: Metrics.width * 0.2,
+        height: Metrics.width * 0.2,
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingBottom: 10,
+    },
 
 });

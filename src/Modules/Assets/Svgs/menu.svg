@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30.204" height="30.204" viewBox="0 0 30.204 30.204">
+  <defs>
+    <radialGradient id="radial-gradient" cx="0.5" cy="0.5" r="0.5" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#e4e4e4"/>
+      <stop offset="1" stop-color="#bfbfbf"/>
+    </radialGradient>
+  </defs>
+  <path id="Icon_material-apps" data-name="Icon material-apps" d="M6,13.551h7.551V6H6ZM17.326,36.2h7.551V28.653H17.326ZM6,36.2h7.551V28.653H6ZM6,24.877h7.551V17.326H6Zm11.326,0h7.551V17.326H17.326ZM28.653,6v7.551H36.2V6ZM17.326,13.551h7.551V6H17.326ZM28.653,24.877H36.2V17.326H28.653Zm0,11.326H36.2V28.653H28.653Z" transform="translate(-6 -6)" fill="url(#radial-gradient)"/>
+</svg>
+

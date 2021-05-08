@@ -120,7 +120,14 @@ const HomeScreen = props => {
 
                 </View>
                 <View style={styles.tabNavigationContainer}>
-                    
+                    <Svgs.MenuIcon width="40%" height="40%"></Svgs.MenuIcon>
+                    <View style={styles.addButtonContainer}>
+                        <Svgs.AddIcon width="100%" height="100%"></Svgs.AddIcon>
+                    </View>
+                    <Svgs.ChartTabIcon width="40%" height="40%"></Svgs.ChartTabIcon>
+                </View>
+                <View style={styles.addButtonContainer}>
+                <Svgs.AddIcon width="100%" height="100%"></Svgs.AddIcon>
                 </View>
             </LinearGradient>
         </View>
