@@ -131,4 +131,18 @@ export default StyleSheet.create ({
         paddingBottom: 10,
     },
 
+    //BASE EKLEME
+    separator: {
+        height: StyleSheet.hairlineWidth,
+        backgroundColor: 'rgba(0,0,0,0.5)',
+    },
+    itemTouchable: {
+        marginVertical: Metrics.width * 0.02,
+        paddingVertical: Metrics.width * 0.02,
+    },
+    itemText: {
+        fontFamily: Fonts.Families.medium,
+        fontSize: 16,
+    },
+
 });
