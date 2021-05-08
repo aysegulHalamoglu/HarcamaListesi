@@ -12,4 +12,7 @@ export const convertRawData = data => {
         convertedList.push(convertedItem);
     }
 
+
     return convertedList;
+
+};

@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
-import { View, Text, FlatList, TouchableOpacity, TouchableHighlight, SafeAreaView, StatusBar } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, FlatList, TouchableOpacity, SafeAreaView, StatusBar } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { Metrics, Fonts } from '../../Constants';
+import { addItem, deleteItem, subscribeToItemData, updateItem } from './API/Firebase';
 import {Svgs} from '../../Constants/'
 import { createStackNavigator } from '@react-navigation/stack';
 import { useDispatchChangeTheme, useTheme, useThemedValues, useThemedOption } from '../../Theming';
@@ -58,6 +59,71 @@ const dummyCategories = [
 
 
 const HomeScreen = props => {
+
+    const [itemList, setItemList] = useState(null);
+    const [isDeleteModeOn, setIsDeleteModeOn] = useState(false);
+
+    useEffect(() => {
+        const off = subscribeToItemData(itemList => {
+            setItemList(itemList)
+        });
+
+        return () => off();
+    }, [])
+
+    // Silme modu kapalıyken ekleme sayfasına götürsün
+    // Silme modu açıkken de silme modunu kapatsın.
+    const _onPress_Add = () => {
+        if (isDeleteModeOn) {
+            setIsDeleteModeOn(false);
+        }
+        else {
+            props.navigation.navigate('add-edit-screen');
+        }
+    }
+
+    // Silme modu açıkken basılınca silinsin
+    // Kapalıyken, edit sayfasına gitsin
+    const _onPress_Edit = item => {
+        if (isDeleteModeOn) {
+            deleteItem(item.key)
+        }
+        else {
+            // AddEditScreen'e item'in id'sini gönderiyoruz
+            props.navigation.navigate('add-edit-screen', {
+                itemKey: item.key
+            })
+        }
+    }
+
+    // Alındı durumu tersine çevrilsin
+    const _onLongPress_Item = item => {
+        updateItem({
+            ...item,
+            isBought: !item.isBought,
+        });
+    }
+
+    // Yeni ekle butonuna uzun basılınca silme modu açılsın
+    const _onLongPress_Add = () => {
+        setIsDeleteModeOn(true);
+    }
+
+    const _renderItem = ({item}) => {
+        // item'e basıldığında id'sini gönderiyoruz
+        return (
+            <TouchableOpacity 
+                style={styles.itemTouchable} 
+                onPress={() => _onPress_Edit(item)}
+                onLongPress={() => _onLongPress_Item(item)}>
+                <Text style={[styles.itemText, {color: item.isBought ? 'rgba(0,0,0,0.4)' : 'black'}]}>{item.title}</Text>
+            </TouchableOpacity>
+        )
+    }
+
+    const _ItemSeparator = () => {
+        return <View style={styles.separator} />
+    }
 
     const _onPress_Settings = () => {
         props.navigation.navigate('settings-screen')   
@@ -117,18 +183,26 @@ const HomeScreen = props => {
                     </TouchableOpacity>
                 </View>
                 <View style={styles.flatListContainer}>
-
+                    <FlatList 
+                        style={styles.flatList}
+                        data={itemList}
+                        renderItem={_renderItem}
+                        keyExtractor={item => item.key}
+                        ItemSeparatorComponent={_ItemSeparator}
+                    />
                 </View>
                 <View style={styles.tabNavigationContainer}>
                     <Svgs.MenuIcon width="40%" height="40%"></Svgs.MenuIcon>
-                    <View style={styles.addButtonContainer}>
-                        <Svgs.AddIcon width="100%" height="100%"></Svgs.AddIcon>
-                    </View>
+                    <TouchableOpacity
+                        onPress={_onPress_Add}
+                        onLongPress={_onLongPress_Add}>
+                        <View style={styles.addButtonContainer}>
+                            <Svgs.AddIcon width="100%" height="100%"></Svgs.AddIcon>
+                        </View>
+                    </TouchableOpacity>
                     <Svgs.ChartTabIcon width="40%" height="40%"></Svgs.ChartTabIcon>
-                </View>
-                <View style={styles.addButtonContainer}>
-                <Svgs.AddIcon width="100%" height="100%"></Svgs.AddIcon>
-                </View>
+                    </View>
+                
             </LinearGradient>
         </View>
 

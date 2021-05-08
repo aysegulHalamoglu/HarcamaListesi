@@ -5,6 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import CalendarScreen from '../Screens/Calendar/CalendarScreen';
 import SettingsScreen from '../Screens/Settings/SettingsScreen';
 import HomeScreen from '../Screens/Home/HomeScreen';
+import AddEditScreen from '../Screens/Home/Components/AddEditScreen';
 
 //component imports
 import AddExpenseModal from '../Screens/Home/Components/AddExpenseModal';
@@ -47,6 +48,15 @@ const AppNavigation = () => {
                 component = {SettingsScreen}
                 options = {{
                     title: loc.t(Texts.settings),
+                }}
+            />
+
+            <AppStack.Screen
+                name = "add-edit-screen"
+                component = {AddEditScreen}
+                options = {{
+                    title: loc.t(Texts.settings),
+                    headerShown: false,
                 }}
             />
         </AppStack.Navigator>
