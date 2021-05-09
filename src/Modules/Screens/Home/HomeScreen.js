@@ -150,7 +150,7 @@ const HomeScreen = props => {
                 <View style={styles.stackContainer}>
                     <View style={styles.profileContainer}>
                         <Text style={styles.welcomeText}>Welcome</Text>
-                        <Text style={styles.profileName}>Semih BULUT</Text>
+                        <Text style={styles.profileName}>{user.displayName}</Text>
                     </View>
                     <TouchableOpacity onPress={_onPress_Settings}>
                         <View style={styles.settingsIcon}>
