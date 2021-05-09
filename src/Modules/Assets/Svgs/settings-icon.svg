@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="54" height="54" viewBox="0 0 54 54">
+  <defs>
+    <filter id="Rectangle_22" x="0" y="0" width="54" height="54" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Group_8" data-name="Group 8" transform="translate(-330 -50)">
+    <g transform="matrix(1, 0, 0, 1, 330, 50)" filter="url(#Rectangle_22)">
+      <rect id="Rectangle_22-2" data-name="Rectangle 22" width="36" height="36" rx="11" transform="translate(9 6)" fill="rgba(230,230,230,0.4)"/>
+    </g>
+    <g id="Icon_feather-settings" data-name="Icon feather-settings" transform="translate(347.481 64.481)">
+      <path id="Path_2" data-name="Path 2" d="M18.694,16.1a2.6,2.6,0,1,1-2.6-2.6A2.6,2.6,0,0,1,18.694,16.1Z" transform="translate(-6.575 -6.575)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <path id="Path_3" data-name="Path 3" d="M17.428,13.619a1.428,1.428,0,0,0,.286,1.576l.052.052a1.732,1.732,0,1,1-2.45,2.45l-.052-.052a1.44,1.44,0,0,0-2.441,1.021v.147a1.731,1.731,0,0,1-3.463,0v-.078a1.428,1.428,0,0,0-.935-1.307,1.428,1.428,0,0,0-1.576.286l-.052.052a1.732,1.732,0,1,1-2.45-2.45l.052-.052a1.44,1.44,0,0,0-1.021-2.441H3.231a1.731,1.731,0,0,1,0-3.463h.078a1.428,1.428,0,0,0,1.307-.935A1.428,1.428,0,0,0,4.331,6.85L4.279,6.8a1.732,1.732,0,1,1,2.45-2.45l.052.052a1.428,1.428,0,0,0,1.576.286h.069a1.428,1.428,0,0,0,.866-1.307V3.231a1.731,1.731,0,1,1,3.463,0v.078a1.44,1.44,0,0,0,2.441,1.021l.052-.052a1.732,1.732,0,1,1,2.45,2.45l-.052.052a1.428,1.428,0,0,0-.286,1.576v.069a1.428,1.428,0,0,0,1.307.866h.147a1.731,1.731,0,1,1,0,3.463h-.078a1.428,1.428,0,0,0-1.307.866Z" transform="translate(-1.5 -1.5)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+    </g>
+  </g>
+</svg>

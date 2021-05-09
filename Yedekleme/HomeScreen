@@ -1,0 +1,160 @@
+import React, { useState } from 'react';
+import { View, Text, FlatList, TouchableOpacity } from 'react-native';
+import { createStackNavigator } from '@react-navigation/stack'
+import { useDispatchChangeTheme, useTheme, useThemedValues, useThemedOption } from '../../Theming';
+
+
+import styles from './Styles/HomeScreenStyles';
+import CategoryItem from './Components/CategoryItem';
+import Modal from 'react-native-modal';
+import AddExpenseModal from './Components/AddExpenseModal';
+
+
+const dummyCategories = [
+    {
+        categoryId: 1,
+        categoryName: 'MARKET',
+        color: 'green',
+    },
+    {
+        categoryId: 2,
+        categoryName: 'GİYİM',
+        color: 'orange',
+    },
+    {
+        categoryId: 3,
+        categoryName: 'FATURALAR',
+        color: 'blue',
+
+    },
+    {
+        categoryId: 4,
+        categoryName: 'YEME - İÇME',
+        color: 'yellow',
+    },
+    {
+        categoryId: 5,
+        categoryName: 'EĞLENCE',
+        color: 'black',
+    },
+    {
+        categoryId: 6,
+        categoryName: 'TEKNOLOJİ',
+        color: 'lime'
+    },
+    {
+        categoryId: 7,
+        categoryName: 'KOZMETİK',
+        color: 'pink',
+    },
+    {
+        categoryId: 8,
+        categoryName: 'HEDİYE',
+        color: 'red'
+    },
+]
+
+
+const HomeScreen = props => {
+
+    const [isModalVisible, setIsModalVisible] = useState(false);
+    const _renderCategoryItem = ({ item }) => {
+        return (
+            <CategoryItem data={item} />
+        )
+    }
+
+    const _onPress_AddExpenseModal = () => {
+        setIsModalVisible(true);
+    }
+
+    const _onPress_Settings = () => {
+        props.navigation.navigate('settings-screen')   
+    }
+
+    const _onPress_Calendar = () => {
+        props.navigation.navigate('calendar-screen')
+    }
+
+    const _onPress_ModalBackdrop = () => {
+        setIsModalVisible(false);
+    }
+
+    const EmptyComponent = props => {
+        return <Text>Boş</Text>
+    }
+
+    return (
+        <>
+            <View style={styles.container}>
+                <View style={styles.titleContainer}>
+                    {/* Title */}
+                    <Text>Kategoriler</Text>
+                </View>
+                <View style={styles.flatListContainer}>
+                    {/* CategoryList */}
+                    <FlatList
+                        ListEmptyComponent={EmptyComponent}
+                        // Render edilecek itemlerin listesi (array)
+                        data={dummyCategories}
+                        // Her bir itemin nasıl render edileceği (fonksiyon)
+                        renderItem={_renderCategoryItem}
+                        // Her bir itemin 'key'sinin ne olacağı (fonksiyon)
+                        keyExtractor={(item, index) => item.categoryId}
+                        numColumns={2}
+                        style={styles.flatList}
+                        // Her bir sütunun container style'ı
+                        columnWrapperStyle={styles.columnWrapperStyle}
+                        // FlatList'in içindeki her şeyi kapsayan container style'ı
+                        contentContainerStyle={styles.contentContainerStyle}
+                    />
+                </View>
+                <View style={styles.buttonContainer}>
+                    <TouchableOpacity
+                        style={styles.touchable}
+                        onPress={_onPress_Settings}>
+                        <Text style={styles.text}>
+                            AS
+                        </Text>
+                    </TouchableOpacity>
+                </View>
+                <View style={styles.buttonContainer}> 
+                    <TouchableOpacity
+                        style={styles.touchable}
+                        onPress={_onPress_AddExpenseModal}>
+                        <Text style={styles.text}>
+                            YENİ
+                        </Text>
+                    </TouchableOpacity>
+                </View>
+                <View style={styles.buttonContainer}> 
+                    <TouchableOpacity
+                        style={styles.touchable}
+                        onPress={_onPress_Calendar}>
+                        <Text style={styles.text}>
+                            07
+                        </Text>
+                    </TouchableOpacity>
+                </View>
+            </View>
+            <Modal
+                isVisible={isModalVisible}
+                // arkaplana tıklayınca fonksiyonu
+                onBackdropPress={_onPress_ModalBackdrop}
+                style={styles.modal}
+                // açılış animasyonu
+                animationIn="fadeIn"
+                // kapanış animasyonu
+                animationOut="fadeOut"
+            >
+                <AddExpenseModal/>
+            </Modal>
+        </>
+
+
+    )
+}
+
+
+
+export default HomeScreen;

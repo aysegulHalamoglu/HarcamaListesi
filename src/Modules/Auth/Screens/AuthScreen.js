@@ -22,13 +22,13 @@ const AuthScreen = props => {
 
     const _onPress_SignUp = () => {
         
-        if (email.length === 0 || password.length === 0 || passwordConfirm.length === 0||  name.length === 0 || password=== passwordConfirm) {
+        if (email.length === 0 || password.length === 0 || passwordConfirm.length === 0||  name.length === 0 ) {
             Alert.alert('Uyarı', 'Lütfen tüm alanları doldurun.');
         }
         else if (!isValidEmail(email) ) {
             Alert.alert('Uyarı', 'Lütfen e-posta adresinizi kontrol edin.');
         }
-        else if (!isValidPasswordConfirm(passwordConfirm) ) {
+        else if (password !== passwordConfirm)  {
             Alert.alert('Uyarı', 'Şifreler eşleşmiyor: Lütfen kontrol edin.');
         }
         else {

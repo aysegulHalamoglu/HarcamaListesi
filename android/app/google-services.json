@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "269159381093",
-    "project_id": "harcamalistesi-f38d8",
-    "storage_bucket": "harcamalistesi-f38d8.appspot.com"
+    "project_number": "553774745002",
+    "project_id": "harcamalistesi-87f68",
+    "storage_bucket": "harcamalistesi-87f68.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:269159381093:android:9ef6fe3c430608fdc12e8c",
+        "mobilesdk_app_id": "1:553774745002:android:b54ec8fbf9df7339b1d7d3",
         "android_client_info": {
           "package_name": "com.harcamalistesi"
         }
       },
       "oauth_client": [
         {
-          "client_id": "269159381093-k65nds7f97t5v0oo60lo5r2ifdnn25hi.apps.googleusercontent.com",
+          "client_id": "553774745002-b1c5mldm4ntkgnhcouqms2cm0m4gv263.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCBKzpIbSibKpUVxGYZuMpFtXiZ11H-w5I"
+          "current_key": "AIzaSyCpXp18DVSWq1j6yhD1M5Oct3zfYrIjnEQ"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "269159381093-k65nds7f97t5v0oo60lo5r2ifdnn25hi.apps.googleusercontent.com",
+              "client_id": "553774745002-b1c5mldm4ntkgnhcouqms2cm0m4gv263.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
