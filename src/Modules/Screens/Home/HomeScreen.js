@@ -1,16 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList, TouchableOpacity, SafeAreaView, StatusBar } from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
-import { Metrics, Fonts } from '../../Constants';
-import { addItem, deleteItem, subscribeToItemData, updateItem } from './API/Firebase';
-import {Svgs} from '../../Constants/'
+import { useSelector } from 'react-redux';
 import { createStackNavigator } from '@react-navigation/stack';
-import { useDispatchChangeTheme, useTheme, useThemedValues, useThemedOption } from '../../Theming';
-
-
-import styles from './Styles/HomeScreenStyles';
 import Modal from 'react-native-modal';
+import LinearGradient from 'react-native-linear-gradient';
+
+import { addItem, deleteItem, subscribeToItemData, updateItem } from './API/Firebase';
+import { userSelector} from '../../Auth/Redux/UserRedux';
+
 import AddExpenseModal from './Components/AddExpenseModal';
+import { Metrics, Fonts } from '../../Constants';
+import {Svgs} from '../../Constants/'
+
+import { useDispatchChangeTheme, useTheme, useThemedValues, useThemedOption } from '../../Theming';
+import styles from './Styles/HomeScreenStyles';
+
+
+
 
 
 const dummyCategories = [
@@ -133,6 +139,8 @@ const HomeScreen = props => {
         props.navigation.navigate('calendar-screen')
     };
 
+    const user = useSelector(userSelector);
+
     return (
         <View style={styles.container}>
             <StatusBar
@@ -144,7 +152,7 @@ const HomeScreen = props => {
                 <View style={styles.stackContainer}>
                     <View style={styles.profileContainer}>
                         <Text style={styles.welcomeText}>Welcome</Text>
-                        <Text style={styles.profileName}>Semih BULUT</Text>
+                        <Text style={styles.profileName}>{user.displayName}</Text>
                     </View>
                     <TouchableOpacity onPress={_onPress_Settings}>
                         <View style={styles.settingsIcon}>
