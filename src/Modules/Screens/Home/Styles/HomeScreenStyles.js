@@ -1,243 +1,162 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList, TouchableOpacity, StatusBar } from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
-import { useSelector } from 'react-redux';
-import { userSelector } from '../../Auth/Redux/UserRedux';
-import { useDispatchChangeTheme, useTheme, useThemedValues, useThemedOption } from '../../Theming';
-//Components
-import AddExpenseModal from './Components/AddExpenseModal';
-import { addItem, deleteItem, subscribeToItemData, updateItem } from './API/Firebase';
-//Assets-Styling
-import { Svgs } from '../../Constants/'
-import { Metrics, Fonts } from '../../Constants';
-import styles from './Styles/HomeScreenStyles';
+import { StyleSheet } from 'react-native';
+import { Metrics, Fonts } from '../../../Constants';
+import { colorNames } from '../../../Theming';
 
+export default StyleSheet.create ({
 
-
-
-
-
-const dummyCategories = [
-    {
-        categoryId: 1,
-        categoryName: 'MARKET',
-        color: 'green',
+    container: {
+        flex: 1,
+        //backgroundColor: '#F2F2F2',
+        flexDirection: 'column',
+        
     },
-    {
-        categoryId: 2,
-        categoryName: 'GİYİM',
-        color: 'orange',
+    text: {
+        fontFamily: Fonts.Families.semibold,
+        color: 'white',
     },
-    {
-        categoryId: 3,
-        categoryName: 'FATURALAR',
-        color: 'blue',
 
+    //STACK NAVIGATION CONTAINER
+
+    stackContainer: {
+        width: Metrics.width,
+        height: Metrics.width * 0.2,
+        flexDirection: 'row',
+        padding: Metrics.marginHorizontal,
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginTop: 20,
     },
-    {
-        categoryId: 4,
-        categoryName: 'YEME - İÇME',
-        color: 'yellow',
+    profileContainer: {
+        width: Metrics.width * 0.40,
+        height: Metrics.width * 0.20,
+        borderRadius: Metrics.borderRadiusStandard,
+        justifyContent: 'center',
     },
-    {
-        categoryId: 5,
-        categoryName: 'EĞLENCE',
-        color: 'black',
+    welcomeText: {
+        fontFamily: Fonts.Families.light,
+        fontSize: 20,
+        color: '#202020',
     },
-    {
-        categoryId: 6,
-        categoryName: 'TEKNOLOJİ',
-        color: 'lime'
+    profileName: {
+        fontFamily: Fonts.Families.semibold,
+        fontSize: 25,
+        color: '#202020',
     },
-    {
-        categoryId: 7,
-        categoryName: 'KOZMETİK',
-        color: 'pink',
+    settingsIcon: {
+        flexDirection: 'row',
+        width: Metrics.width * 0.15,
+        height: Metrics.width * 0.15,
+        borderRadius: Metrics.borderRadiusSmall,
     },
-    {
-        categoryId: 8,
-        categoryName: 'HEDİYE',
-        color: 'red'
+
+    //ACCOUNT CONTAINER
+    accountContainer: {
+        width: Metrics.width,
+        height: Metrics.width * 0.5,
+        //backgroundColor: 'red',
+        alignItems: 'center',
+        marginTop: 20,
     },
-]
+    budgetCard: {
+        width: Metrics.width * 0.8,
+        height: Metrics.width * 0.5,
+        borderRadius: 50,
+        alignItems: 'center',
+        justifyContent: 'center',
+        
+    },
+    topCardContainer: {
+        width: Metrics.width * 0.8,
+        height: Metrics.width * 0.2,
+        alignItems: 'center',
+    },
+    bottomCardContainer: {
+        width: Metrics.width * 0.8,
+        height: Metrics.width * 0.2,
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        
+    },
+    incomeExpenseContainer: {
+        width: Metrics.width * 0.3,
+        height: Metrics.width * 0.15,
+    },
 
+    //TITLE CONTAINER
+    titleContainer: {
+        width: Metrics.width,
+        height: Metrics.width * 0.15,
+        // backgroundColor: 'lime',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center'
+    },
 
-const HomeScreen = props => {
+    titleText: {
+        fontSize: 35,
+        fontFamily: Fonts.Families.bold,
+        color: 'white',
+        marginLeft: 10,
+    },
+    textButton: {
+        fontFamily: Fonts.Families.semibold,
+        fontSize: 12,
+        color: 'white',
+        marginRight: 25,
+    },
+    
+    //FLATLIST CONTAINER
+    flatListContainer: {
+        width: Metrics.width,
+        height: Metrics.width * 0.85,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    flatList: {
+        width: Metrics.width * 0.6,
+        height: Metrics.height * 0.2,
+        borderRadius: 5,
+        backgroundColor: 'white',
+        
+    },
+    columnWrapperStyle: {
+        // backgroundColor: 'yellow',
+        justifyContent: 'space-between',
+        paddingBottom: Metrics.width * 0.03,
+    },
+    //TAB NAVIGATION CONTAINER
+    tabNavigationContainer : {
+        width: Metrics.width,
+        height: Metrics.width * 0.21,
+        borderTopLeftRadius: 75,
+        borderTopRightRadius: 75,
+        backgroundColor: 'white',
+        opacity: 0.7,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',   
+    },
+    addButtonContainer: {
+        width: Metrics.width * 0.2,
+        height: Metrics.width * 0.2,
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingBottom: 10,
+    },
 
-    const [itemList, setItemList] = useState(null);
-    const [isDeleteModeOn, setIsDeleteModeOn] = useState(false);
+    //BASE EKLEME
+    separator: {
+        height: StyleSheet.hairlineWidth,
+        backgroundColor: 'rgba(0,0,0,0.5)',
+    },
+    itemTouchable: {
+        marginVertical: Metrics.width * 0.02,
+        paddingVertical: Metrics.width * 0.02,
+    },
+    itemText: {
+        fontFamily: Fonts.Families.medium,
+        fontSize: 16,
+    },
 
-    useEffect(() => {
-        const off = subscribeToItemData(itemList => {
-            setItemList(itemList)
-        });
-
-        return () => off();
-    }, [])
-
-    // Silme modu kapalıyken ekleme sayfasına götürsün
-    // Silme modu açıkken de silme modunu kapatsın.
-    const _onPress_Add = () => {
-        if (isDeleteModeOn) {
-            setIsDeleteModeOn(false);
-        }
-        else {
-            props.navigation.navigate('add-edit-screen');
-        }
-    }
-
-    // Silme modu açıkken basılınca silinsin
-    // Kapalıyken, edit sayfasına gitsin
-    const _onPress_Edit = item => {
-        if (isDeleteModeOn) {
-            deleteItem(item.key)
-        }
-        else {
-            // AddEditScreen'e item'in id'sini gönderiyoruz
-            props.navigation.navigate('add-edit-screen', {
-                itemKey: item.key
-            })
-        }
-    }
-
-    // Alındı durumu tersine çevrilsin
-    const _onLongPress_Item = item => {
-        updateItem({
-            ...item,
-            isBought: !item.isBought,
-        });
-    }
-
-    // Yeni ekle butonuna uzun basılınca silme modu açılsın
-    const _onLongPress_Add = () => {
-        setIsDeleteModeOn(true);
-    }
-
-    const _renderItem = ({ item }) => {
-        // item'e basıldığında id'sini gönderiyoruz
-        return (
-            <TouchableOpacity
-                style={styles.itemTouchable}
-                onPress={() => _onPress_Edit(item)}
-                onLongPress={() => _onLongPress_Item(item)}>
-                <Text style={[styles.itemText, { color: item.isBought ? 'rgba(0,0,0,0.4)' : 'black' }]}>{item.title}</Text>
-            </TouchableOpacity>
-        )
-    }
-
-    const _ItemSeparator = () => {
-        return <View style={styles.separator} />
-    }
-
-    const _onPress_Settings = () => {
-        props.navigation.navigate('settings-screen')
-    };
-
-    const _onPress_Calendar = () => {
-        props.navigation.navigate('calendar-screen')
-    };
-
-    const user = useSelector(userSelector);
-
-    return (
-        <View style={styles.container}>
-            <StatusBar
-                backgroundColor="#F1F2B5"
-                barStyle="dark-content"
-
-            />
-            <LinearGradient
-                start={{ x: 0, y: 0 }}
-                end={{ x: 0, y: 1 }}
-                colors={["#F1F2B5", "#C779D0", "#4BC0C8"]}
-                style={{ flex: 1 }}>
-
-                <View style={styles.stackContainer}>
-                    <View style={styles.profileContainer}>
-                        <View style={styles.avatarContainer}>
-                            <Text style={styles.avatarName}>{user.displayName['0']}</Text>
-                        </View>
-                        <View style={styles.profileTextContainer}>
-                            <View style={styles.welcomeContainer}>
-                                <Text style={styles.welcome}>Welcome</Text>
-                            </View>
-
-                            <View style={styles.profileNameContainer}>
-                                <Text style={styles.profileName} >{user.displayName}</Text>
-                            </View>
-                        </View>
-                    </View>
-                   <View style={styles.settingsContainer} >
-                   <TouchableOpacity  onPress={_onPress_Settings}>
-                        <Svgs.SettingsIcon width="100%" height="100%"></Svgs.SettingsIcon>
-                    </TouchableOpacity>
-                   </View>
-                </View>
-                <View style={styles.accountContainer}>
-                    <TouchableOpacity onPress={_onPress_Calendar} style={{ flex: 1 }}>
-                        <LinearGradient
-                            start={{ x: 1, y: 0 }}
-                            end={{ x: 0, y: 1 }}
-                            colors={['#EC0076', '#AB48E4', '#6754B7', '#5D9ACF', '#00DCFF']}
-                            style={styles.budgetCard}>
-                            <View style={styles.totalBudgetContainer}>
-                                <View style={styles.budgetTitle}>
-                                    <Text style={{ flex: 1, fontSize: Fonts.Sizes.eighteen, color: 'white', fontFamily: Fonts.Families.semibold }}>Net Bütçe</Text>
-                                </View>
-
-                                <View style={styles.budgetValue}>
-                                    <Text style={{ flex: 1, fontSize: 30, color: 'white', fontFamily: Fonts.Families.semibold }}>₺ 860.00</Text>
-
-                                </View>
-                            </View>
-                            <View style={styles.bottomCardContainer}>
-                                <View style={styles.incomeExpenseContainer}>
-                                    <Text style={styles.incomeText }>Gelir</Text>
-                                    <Text style={{ flex: 1, fontSize: Fonts.Sizes.twenty, color: 'white', fontFamily: Fonts.Families.semibold }}>₺ 1580.00</Text>
-                                </View>
-                                <View style={styles.outcomeExpenseContainer}>
-                                    <Text style={styles.outcomeText}>Gider</Text>
-                                    <Text style={{ flex: 1, fontSize: Fonts.Sizes.twenty, color: 'white', fontFamily: Fonts.Families.semibold }}>₺ 720.00</Text>
-                                </View>
-                            </View>
-
-                        </LinearGradient>
-
-                    </TouchableOpacity>
-                </View>
-                <View style={styles.titleContainer}>
-                    <Text style={styles.titleText}>HARCAMALARIM</Text>
-
-                </View>
-                <View style={styles.flatListContainer}>
-                    <FlatList
-                        style={styles.flatList}
-                        data={itemList}
-                        renderItem={_renderItem}
-                        keyExtractor={item => item.key}
-                        ItemSeparatorComponent={_ItemSeparator}
-                    />
-                </View>
-                <View style={styles.tabNavigationContainer}>
-                    <Svgs.MenuIcon width="40%" height="40%"></Svgs.MenuIcon>
-                    <TouchableOpacity
-                        onPress={_onPress_Add}
-                        onLongPress={_onLongPress_Add}>
-                        <View style={styles.addButtonContainer}>
-                            <View style={styles.addButton}>
-                                <Svgs.AddIcon width="100%" height="100%"></Svgs.AddIcon>
-                            </View>
-                        </View>
-                    </TouchableOpacity>
-                    <Svgs.ChartTabIcon width="40%" height="40%"></Svgs.ChartTabIcon>
-                </View>
-
-            </LinearGradient>
-        </View>
-
-    )
-}
-
-
-
-export default HomeScreen;
+});

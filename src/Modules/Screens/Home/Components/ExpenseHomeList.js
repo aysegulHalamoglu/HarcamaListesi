@@ -1,9 +1,9 @@
 import React from 'react';
 import {Text, View, TouchableOpacity} from 'react-native';
 
-import styles from '../Styles/CategoryItemsStyle';
+import styles from '../Styles/ExpenseHomeListStyles';
 
-const CategoryItem = props => {
+const ExpenseHomeList = props => {
     return (
         <TouchableOpacity style={styles.container}>
             <Text
@@ -15,4 +15,4 @@ const CategoryItem = props => {
     );
 }
 
-export default CategoryItem;
+export default ExpenseHomeList;
