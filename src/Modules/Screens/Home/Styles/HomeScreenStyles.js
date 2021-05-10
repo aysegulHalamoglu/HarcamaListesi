@@ -94,14 +94,14 @@ export default StyleSheet.create ({
     },
 
     titleText: {
-        fontSize: 35,
+        fontSize: Fonts.Sizes.thirty,
         fontFamily: Fonts.Families.bold,
         color: 'white',
         marginLeft: 10,
     },
     textButton: {
+        fontSize: Fonts.Sizes.twelve,
         fontFamily: Fonts.Families.semibold,
-        fontSize: 12,
         color: 'white',
         marginRight: 25,
     },

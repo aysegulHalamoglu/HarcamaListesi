@@ -15,6 +15,9 @@ const Sizes = {
     sixteen: Metrics.width * 0.041,
     eighteen: Metrics.width * 0.045,
     twenty: Metrics.width * 0.049,
+    twentytwo: Metrics.width * 0.055,
+    thirty: Metrics.width * 0.077,
+    fourty: Metrics.width * 0.099,
     authlogo: Metrics.width * 0.075,
 };
 
