@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { SafeAreaView, ScrollView, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { SafeAreaView, ScrollView, Text, TextInput, TouchableOpacity, View, StatusBar } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 import { addItem, getItemDetail, updateItem } from '../API/Firebase';
-
+import {Svgs} from '../../../Constants';
 import styles from '../Styles/AddEditScreenStyles';
 
 const AddEditScreen = props => {
@@ -9,6 +10,7 @@ const AddEditScreen = props => {
     const [ itemName, setItemName ] = useState('');
     const [ itemCount, setItemCount ] = useState('');
     const [ itemDetail, setItemDetail ] = useState('');
+    const [ itemDate, setItemDate ] = useState('');
     const [ itemIsBought, setItemIsBought ] = useState(false);
 
     // Edit ekranı için gelen item'in id'si (eğer bir şey gönderilmemişse params: undefined oluyor)
@@ -29,6 +31,7 @@ const AddEditScreen = props => {
                 setItemName(item.title);
                 setItemCount(item.count);
                 setItemDetail(item.detail);
+                setItemDate(item.date);
                 setItemIsBought(item.isBought);
             });
         }
@@ -41,6 +44,7 @@ const AddEditScreen = props => {
             title: itemName,
             count: itemCount,
             detail: itemDetail,
+            date: itemDate,
             isBought: itemIsBought,
         }
 
@@ -57,46 +61,77 @@ const AddEditScreen = props => {
         }
     }
 
+    const _onPress_CloseModal = () => {
+        props.navigation.navigate('home-screen')
+    }
+
 
     return (
-        <SafeAreaView style={styles.safeArea}>
-            <View style={styles.container}>
-                <ScrollView style={styles.scroll}>
-                    <View style={styles.inputContainer} >
-                        <TextInput 
-                            value={itemName}
-                            onChangeText={setItemName}
-                            style={styles.input} 
-                            placeholder="Item adı"
-                            placeholderTextColor="rgba(0,0,0,0.3)"/>
-                    </View>
-
-                    <View style={styles.inputContainer} >
-                        <TextInput 
-                            value={itemCount}
-                            onChangeText={setItemCount}
-                            style={styles.input} 
-                            placeholder="Adet"
-                            placeholderTextColor="rgba(0,0,0,0.3)"
-                            keyboardType="number-pad" />
-                    </View>
-
-                    <View style={styles.inputContainer} >
-                        <TextInput 
-                            value={itemDetail}
-                            onChangeText={setItemDetail}
-                            style={styles.input} 
-                            placeholder="Açıklama"
-                            placeholderTextColor="rgba(0,0,0,0.3)"/>
-                    </View>
-                </ScrollView>
-                <TouchableOpacity style={styles.touchable} onPress={_onPress_AddEdit}>
-                    <Text style={styles.buttonText}>
-                        {itemKey ? 'KAYDET' : 'EKLE'}
-                    </Text>
+        <View style={styles.maincontainer}>
+            <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 0, y: 1 }} 
+                            colors={["#FFFFFF", "#FFE1E1"]}
+                            style={styles.maincontainer}>
+                <TouchableOpacity style={styles.exitButtonContainer} onPress={_onPress_CloseModal}>
+                    <Svgs.CloseModalIcon width="40%" height="40%"></Svgs.CloseModalIcon>
                 </TouchableOpacity>
-            </View>
-        </SafeAreaView>
+                <View style={styles.container}>
+                    <View style={styles.leftContainer}>
+                        <Text style={styles.verticalTitle}>HARCAMALAR</Text>
+                    </View>
+                    <View style={styles.rightContainer}>
+                        
+                        <View style={styles.categoriesButtonContainer}>
+                            <Text style={styles.categoryTitle}>KATEGORİLER</Text>
+                            <TouchableOpacity>
+                                <Svgs.CategoryIcon></Svgs.CategoryIcon>
+                            </TouchableOpacity>
+                        </View>
+                        <View style={styles.titleContainer}>
+                            <Text style={styles.costTitle}>HARCAMA TUTARI</Text>
+                        </View>
+                        <View style={styles.inputContainer}>
+                            <View style={styles.inputCostContainer}>
+                                <Text style={styles.tlIcon}>₺</Text>
+                                <TextInput style={styles.inputCost}
+                                      placeholderStyle={styles.inputCost}
+                                      value={itemCount}
+                                      onChangeText={setItemCount}
+                                      placeholder= '0'
+                                      placeholderTextColor="#BC0336"
+                                      keyboardType="number-pad" />
+                            </View>
+                            <View style={styles.inputInfoContainer}>
+                            <TextInput 
+                                value={itemName}
+                                onChangeText={setItemName}
+                                style={styles.input} 
+                                placeholder="Item adı"
+                                placeholderTextColor="rgba(0,0,0,0.3)"/>
+                            <TextInput 
+                                value={itemDate}
+                                onChangeText={setItemDate}
+                                style={styles.input} 
+                                placeholder="DD/MM/YY"
+                                placeholderTextColor="rgba(0,0,0,0.3)"/>
+                            <TextInput 
+                                value={itemDetail}
+                                onChangeText={setItemDetail}
+                                style={styles.input} 
+                                placeholder="Açıklama"
+                                placeholderTextColor="rgba(0,0,0,0.3)"/>
+                            </View>
+                        </View>
+                        <View style={styles.addButtonContainer}>
+                            <TouchableOpacity onPress={_onPress_AddEdit}>
+                                <Svgs.AddButton></Svgs.AddButton>
+                            </TouchableOpacity>
+                        </View>
+                        
+                    </View>
+                </View>
+
+            </LinearGradient>
+       </View>         
     );
 };
 

@@ -1,0 +1,38 @@
+<SafeAreaView style={styles.safeArea}>
+            <View style={styles.container}>
+                <ScrollView style={styles.scroll}>
+                    <View style={styles.inputContainer} >
+                        <TextInput 
+                            value={itemName}
+                            onChangeText={setItemName}
+                            style={styles.input} 
+                            placeholder="Item adı"
+                            placeholderTextColor="rgba(0,0,0,0.3)"/>
+                    </View>
+
+                    <View style={styles.inputContainer} >
+                        <TextInput 
+                            value={itemCount}
+                            onChangeText={setItemCount}
+                            style={styles.input} 
+                            placeholder="Adet"
+                            placeholderTextColor="rgba(0,0,0,0.3)"
+                            keyboardType="number-pad" />
+                    </View>
+
+                    <View style={styles.inputContainer} >
+                        <TextInput 
+                            value={itemDetail}
+                            onChangeText={setItemDetail}
+                            style={styles.input} 
+                            placeholder="Açıklama"
+                            placeholderTextColor="rgba(0,0,0,0.3)"/>
+                    </View>
+                </ScrollView>
+                <TouchableOpacity style={styles.touchable} onPress={_onPress_AddEdit}>
+                    <Text style={styles.buttonText}>
+                        {itemKey ? 'KAYDET' : 'EKLE'}
+                    </Text>
+                </TouchableOpacity>
+            </View>
+        </SafeAreaView>

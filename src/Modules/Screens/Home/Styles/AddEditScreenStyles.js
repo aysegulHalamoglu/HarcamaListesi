@@ -2,41 +2,107 @@ import { StyleSheet } from 'react-native';
 import { Fonts, Metrics } from '../../../Constants';
 
 export default StyleSheet.create({
-    safeArea: {
+    
+    maincontainer:{
         flex: 1,
-        backgroundColor: 'white'
+        flexDirection: 'column',
+    },
+    exitButtonContainer: {
+        flex: 0.05,
+        //backgroundColor: 'yellow',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     container: {
         flex: 1,
-        padding: Metrics.marginHorizontal,
+        flexDirection: 'row',
+        justifyContent: 'center',
+    },    
+    // VERTICAL TITLE CONTAINER
+    leftContainer: {
+        flex: 0.75,
+        //backgroundColor: 'green',
+        alignItems: 'center',
+        opacity: 0.2,
     },
-    scroll: {
-        flexGrow: 1,
-        flexShrink: 1,
+    // RIGHT CONTAINER
+    rightContainer: {
+        flex: 2,        
+        flexDirection: 'column',
+        //backgroundColor: 'blue',
+    },
+    // CONTENT CONTAINERS
+    categoriesButtonContainer: {
+        flex: 0.1,
+        //backgroundColor: 'red',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'flex-end',
+    },
+    titleContainer:{
+        flex: 0.05,
+        //backgroundColor: 'orange',
+        justifyContent: 'center',
     },
     inputContainer: {
-        borderRadius: Metrics.borderRadiusStandard,
-        backgroundColor: 'rgba(0,0,0,0.07)',
-        paddingVertical: Metrics.width * 0.03,
-        paddingHorizontal: Metrics.width * 0.04,
-        marginBottom: Metrics.width * 0.03,
+        flex: 0.75,        
+        //backgroundColor: 'white',
     },
-    input: {
-        padding: 0,
-        fontFamily: Fonts.Families.medium,
-        fontSize: 14,
-        color: 'black'
+    addButtonContainer: {
+        flex: 0.1,
+        justifyContent: 'center',
+        alignItems: 'flex-end',
+        padding: Metrics.width * 0.1,
+        //backgroundColor: 'purple',
     },
-    touchable: {
-        backgroundColor: 'orange',
-        borderRadius: Metrics.borderRadiusStandard,
-        height: Metrics.width * 0.12,
+    inputCostContainer: {
+        flex: 0.5,
         justifyContent: 'center',
         alignItems: 'center',
+        //backgroundColor: 'lime',
+        flexDirection: 'row',
     },
-    buttonText: {
+    inputInfoContainer: {
+        flex: 0.5,
+        //backgroundColor: 'black',
+    },
+
+    // TEXT STYLINGS
+
+    verticalTitle: {
+        fontFamily: Fonts.Families.bold,
+        fontSize: 80,
+        transform: [{rotate: '-90deg'}],
+        width: Metrics.height,
+        color: 'red',
+        marginTop: Metrics.width * 0.30,
+    },
+    categoryTitle: {
+        fontFamily: Fonts.Families.bold,
+        fontSize: Fonts.Sizes.eighteen,
+        color: 'grey',
+        marginRight: Metrics.width * 0.025,
+    },
+    costTitle: {
+        fontFamily: Fonts.Families.bold,
+        fontSize: Fonts.Sizes.twentytwo,
+        color: 'grey',
+    },
+    tlIcon: {
         fontFamily: Fonts.Families.semibold,
-        fontSize: 20,
-        color: 'white',
+        fontSize: 50,
+        color: '#BC0336',
+        marginRight: Metrics.width * 0.025,
     },
+    inputCost: {
+        fontFamily: Fonts.Families.semibold,
+        fontSize: 80,
+        color: '#BC0336',
+    },
+    input: {
+        fontFamily: Fonts.Families.semibold,
+        fontSize: Fonts.Sizes.fourty,
+        color: 'grey',
+    },
+    
 });
