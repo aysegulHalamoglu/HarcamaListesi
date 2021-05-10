@@ -14,6 +14,13 @@ import styles from './Styles/HomeScreenStyles';
 
 
 
+/*
+   disabled font scale in particular places 
+
+   export function Text(props) {
+    return <ScaledText {...props} allowFontScaling={false} />;
+   }
+*/
 
 
 
@@ -218,3 +225,5 @@ const HomeScreen = props => {
 
 
 export default HomeScreen;
+
+
