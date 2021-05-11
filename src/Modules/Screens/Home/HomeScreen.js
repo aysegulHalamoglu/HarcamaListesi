@@ -3,6 +3,7 @@ import { View, Text, FlatList, TouchableOpacity, StatusBar } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient';
 import { useSelector } from 'react-redux';
 import { userSelector } from '../../Auth/Redux/UserRedux';
+import { useLocalization, Texts} from '../../Localization';
 //import { useDispatchChangeTheme, useTheme, useThemedValues, useThemedOption } from '../../Theming';
 //Components
 //import AddExpenseModal from './Components/AddExpenseModal';
@@ -73,6 +74,8 @@ const HomeScreen = props => {
 
     const [itemList, setItemList] = useState(null);
     const [isDeleteModeOn, setIsDeleteModeOn] = useState(false);
+    
+    const loc = useLocalization();
 
     useEffect(() => {
         const off = subscribeToItemData(itemList => {
@@ -156,7 +159,7 @@ const HomeScreen = props => {
 
                 <View style={styles.stackContainer}>
                     <View style={styles.profileContainer}>
-                        <Text style={styles.welcomeText}>Welcome</Text>
+                        <Text style={styles.welcomeText}>{loc.t(Texts.welcome)}</Text>
                         <Text style={styles.profileName}>{user.displayName}</Text>
                     </View>
                     <TouchableOpacity onPress={_onPress_Settings}>
@@ -171,16 +174,16 @@ const HomeScreen = props => {
                             start={{ x: 1, y: 0 }} end={{ x: 0, y: 1 }} colors={['#EC0076', '#AB48E4', '#6754B7', '#5D9ACF', '#00DCFF']}
                             style={styles.budgetCard}>
                              <View style={styles.topCardContainer}>
-                                <Text style={{ fontSize: Fonts.Sizes.twentytwo, color: 'white', fontFamily: Fonts.Families.semibold }}>Net Bütçe</Text>
+                                <Text style={{ fontSize: Fonts.Sizes.twentytwo, color: 'white', fontFamily: Fonts.Families.semibold }}>{loc.t(Texts.totalBudget)} </Text>
                                 <Text style={{  fontSize: Fonts.Sizes.thirty, color: 'white', fontFamily: Fonts.Families.semibold }}>₺ 860.00</Text>
                             </View>
                             <View style={styles.bottomCardContainer}>
                                 <View style={styles.incomeExpenseContainer}>
-                                    <Text style={{ fontSize: Fonts.Sizes.eighteen, color: 'white', fontFamily: Fonts.Families.semibold }}>Gelir</Text>
+                                    <Text style={{ fontSize: Fonts.Sizes.eighteen, color: 'white', fontFamily: Fonts.Families.semibold }}>{loc.t(Texts.income)} </Text>
                                     <Text style={{  fontSize: Fonts.Sizes.twentytwo, color: 'white', fontFamily: Fonts.Families.semibold }}>₺ 1580.00</Text>
                                 </View>
                                 <View style={styles.incomeExpenseContainer}>
-                                    <Text style={{ fontSize: Fonts.Sizes.eighteen, color: 'white', fontFamily: Fonts.Families.semibold }}>Gider</Text>
+                                    <Text style={{ fontSize: Fonts.Sizes.eighteen, color: 'white', fontFamily: Fonts.Families.semibold }}>{loc.t(Texts.expense)} </Text>
                                     <Text style={{  fontSize: Fonts.Sizes.twentytwo, color: 'white', fontFamily: Fonts.Families.semibold }}>₺ 720.00</Text>
                                 </View>
                             </View>
@@ -190,9 +193,9 @@ const HomeScreen = props => {
                     </TouchableOpacity>
                 </View>
                 <View style={styles.titleContainer}>
-                    <Text style={styles.titleText}>HARCAMALARIM</Text>
+                    <Text style={styles.titleText}>{loc.t(Texts.headerExpenses)} </Text>
                     <TouchableOpacity>
-                        <Text style={styles.textButton}>Tümünü Gör</Text>
+                        <Text style={styles.textButton}>{loc.t(Texts.textButton)}</Text>
                     </TouchableOpacity>
                 </View>
                 <View style={styles.flatListContainer}>

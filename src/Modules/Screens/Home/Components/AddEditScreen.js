@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { SafeAreaView, ScrollView, Text, TextInput, TouchableOpacity, View, StatusBar } from 'react-native';
+
 import LinearGradient from 'react-native-linear-gradient';
 import { addItem, getItemDetail, updateItem } from '../API/Firebase';
+import { useLocalization, Texts} from '../../../Localization';
+
+//Assets
 import {Svgs} from '../../../Constants';
 import styles from '../Styles/AddEditScreenStyles';
 
@@ -12,6 +16,7 @@ const AddEditScreen = props => {
     const [ itemDetail, setItemDetail ] = useState('');
     const [ itemDate, setItemDate ] = useState('');
     const [ itemIsBought, setItemIsBought ] = useState(false);
+    const loc = useLocalization();
 
     // Edit ekranı için gelen item'in id'si (eğer bir şey gönderilmemişse params: undefined oluyor)
     const itemKey = props.route.params?.itemKey;
@@ -76,22 +81,22 @@ const AddEditScreen = props => {
                 </TouchableOpacity>
                 <View style={styles.container}>
                     <View style={styles.leftContainer}>
-                        <Text style={styles.verticalTitle}>HARCAMALAR</Text>
+                        <Text style={styles.verticalTitle}>{loc.t(Texts.verticalTitle)}</Text>
                     </View>
                     <View style={styles.rightContainer}>
                         
                         <View style={styles.categoriesButtonContainer}>
-                            <Text style={styles.categoryTitle}>KATEGORİLER</Text>
+                            <Text style={styles.categoryTitle}>{loc.t(Texts.categories)}</Text>
                             <TouchableOpacity>
                                 <Svgs.CategoryIcon></Svgs.CategoryIcon>
                             </TouchableOpacity>
                         </View>
                         <View style={styles.titleContainer}>
-                            <Text style={styles.costTitle}>HARCAMA TUTARI</Text>
+                            <Text style={styles.costTitle}>{loc.t(Texts.expenseAmount)}</Text>
                         </View>
                         <View style={styles.inputContainer}>
                             <View style={styles.inputCostContainer}>
-                                <Text style={styles.tlIcon}>₺</Text>
+                                <Text style={styles.tlIcon}>{loc.t(Texts.currency)}</Text>
                                 <TextInput style={styles.inputCost}
                                       placeholderStyle={styles.inputCost}
                                       value={itemCount}
@@ -105,19 +110,19 @@ const AddEditScreen = props => {
                                 value={itemName}
                                 onChangeText={setItemName}
                                 style={styles.input} 
-                                placeholder="Item adı"
+                                placeholder= {loc.t(Texts.itemName)}
                                 placeholderTextColor="rgba(0,0,0,0.3)"/>
                             <TextInput 
                                 value={itemDate}
                                 onChangeText={setItemDate}
                                 style={styles.input} 
-                                placeholder="DD/MM/YY"
+                                placeholder={loc.t(Texts.date)}
                                 placeholderTextColor="rgba(0,0,0,0.3)"/>
                             <TextInput 
                                 value={itemDetail}
                                 onChangeText={setItemDetail}
                                 style={styles.input} 
-                                placeholder="Açıklama"
+                                placeholder={loc.t(Texts.description)}
                                 placeholderTextColor="rgba(0,0,0,0.3)"/>
                             </View>
                         </View>

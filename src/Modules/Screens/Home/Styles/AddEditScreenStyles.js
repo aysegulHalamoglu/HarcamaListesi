@@ -71,7 +71,7 @@ export default StyleSheet.create({
 
     verticalTitle: {
         fontFamily: Fonts.Families.bold,
-        fontSize: 80,
+        fontSize: Fonts.Sizes.eighty,
         transform: [{rotate: '-90deg'}],
         width: Metrics.height,
         color: 'red',
@@ -90,13 +90,13 @@ export default StyleSheet.create({
     },
     tlIcon: {
         fontFamily: Fonts.Families.semibold,
-        fontSize: 50,
+        fontSize: Fonts.Sizes.fifty,
         color: '#BC0336',
         marginRight: Metrics.width * 0.025,
     },
     inputCost: {
         fontFamily: Fonts.Families.semibold,
-        fontSize: 80,
+        fontSize: Fonts.Sizes.eighty,
         color: '#BC0336',
     },
     input: {
