@@ -114,12 +114,17 @@ export default StyleSheet.create ({
         alignItems: 'center',
     },
     flatList: {
-        width: Metrics.width * 0.6,
-        height: Metrics.height * 0.2,
-        borderRadius: 5,
-        backgroundColor: 'white',
+        width: Metrics.width * 0.9,
+        height: Metrics.width * 0.25,
+        marginBottom: Metrics.width * 0.1,
+        backgroundColor: 'rgba(255, 255, 255, 0.5)',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderColor: 'grey',
+        borderWidth: 1,
+        borderRadius: 20,
+        },
         
-    },
     columnWrapperStyle: {
         // backgroundColor: 'yellow',
         justifyContent: 'space-between',
