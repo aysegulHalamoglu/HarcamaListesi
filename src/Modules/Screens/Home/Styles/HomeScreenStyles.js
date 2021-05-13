@@ -108,6 +108,7 @@ export default StyleSheet.create ({
     
     //FLATLIST CONTAINER
     flatListContainer: {
+        flex:1,
         width: Metrics.width,
         height: Metrics.width * 0.85,
         justifyContent: 'center',

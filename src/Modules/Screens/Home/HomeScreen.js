@@ -215,6 +215,7 @@ const HomeScreen = props => {
                             data={itemList}
                             renderItem={_renderItem}
                             keyExtractor={item => item.key}
+                            ListFooterComponent={() => <Text> </Text>}
                         />
                     </View>
                     <View style={styles.tabNavigationContainer}>

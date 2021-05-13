@@ -66,7 +66,7 @@ export const English = {
     [Texts.income]: 'Income',
     [Texts.expense]: 'Expense',
     [Texts.headerExpenses]: ' MY EXPENSES',
-    [Texts.textButton]: 'See All',
+    [Texts.textButton]: 'View All',
 
     // AddEditScreen
     [Texts.verticalTitle]: 'EXPENSES',
