@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { SafeAreaView, ScrollView, Text, TextInput, TouchableOpacity, View, StatusBar } from 'react-native';
+import { SafeAreaView, ScrollView, Text, TextInput, TouchableOpacity, View, StatusBar, Platform } from 'react-native';
 
 import LinearGradient from 'react-native-linear-gradient';
 import { addItem, getItemDetail, updateItem } from '../API/Firebase';
 import { useLocalization, Texts} from '../../../Localization';
+import DateTimePicker from '@react-native-community/datetimepicker';
+import moment from 'moment';
 
 //Assets
 import {Svgs} from '../../../Constants';
@@ -14,8 +16,12 @@ const AddEditScreen = props => {
     const [ itemName, setItemName ] = useState('');
     const [ itemCount, setItemCount ] = useState('');
     const [ itemDetail, setItemDetail ] = useState('');
-    const [ itemDate, setItemDate ] = useState('');
+    const [ date, setDate ] = useState(new Date());
+    const [ mode, setMode ] = useState('date');
+    const [ show, setShow ] = useState(false);
+    const [ todayDate, setDateToday ] = useState('');
     const [ itemIsBought, setItemIsBought ] = useState(false);
+    const [pickerVis, setPickerVis] = useState(false);
     const loc = useLocalization();
 
     // Edit ekranı için gelen item'in id'si (eğer bir şey gönderilmemişse params: undefined oluyor)
@@ -36,7 +42,8 @@ const AddEditScreen = props => {
                 setItemName(item.title);
                 setItemCount(item.count);
                 setItemDetail(item.detail);
-                setItemDate(item.date);
+                setDate(item.date);
+                setDateToday(item.todayDate);
                 setItemIsBought(item.isBought);
             });
         }
@@ -49,7 +56,8 @@ const AddEditScreen = props => {
             title: itemName,
             count: itemCount,
             detail: itemDetail,
-            date: itemDate,
+            date: date,
+            todayDate: todayDate,
             isBought: itemIsBought,
         }
 
@@ -64,6 +72,26 @@ const AddEditScreen = props => {
             // Yoksa yeni ekliyoruzdur
             addItem(item, onComplete);
         }
+    }
+
+    const onChangeDate = (event, selectedDate) => {
+        if (event.type === 'dismissed') {
+            setShow(false);
+            setDate(currentDate);
+            setDateToday(moment(currentDate).format('DD-MM-YYYY'));
+        }
+
+        else {
+            const currentDate = selectedDate;
+            setShow(Platform.OS === 'ios');
+            setDate(currentDate);
+            setDateToday(moment(currentDate).format('DD-MM-YYYY'));
+        }
+    };
+
+    const showModeDate = () => {
+        setShow(true);
+        setMode('date');
     }
 
     const _onPress_CloseModal = () => {
@@ -112,12 +140,32 @@ const AddEditScreen = props => {
                                 style={styles.input} 
                                 placeholder= {loc.t(Texts.itemName)}
                                 placeholderTextColor="rgba(0,0,0,0.3)"/>
-                            <TextInput 
-                                value={itemDate}
-                                onChangeText={setItemDate}
-                                style={styles.input} 
-                                placeholder={loc.t(Texts.date)}
-                                placeholderTextColor="rgba(0,0,0,0.3)"/>
+                            
+                             
+
+                            <TouchableOpacity onPress={showModeDate}>
+                            <TextInput
+                                    value={todayDate}
+                                    onChangeText={setDate}
+                                    style={styles.input}
+                                    placeholder = {loc.t(Texts.date)}
+                                    placeholderTextColor="rgba(0,0,0,0.3)"
+                                    editable={false}
+                                
+                            />
+                                
+                                {show === true && (
+                                    <DateTimePicker
+                                        testID='datePicker'
+                                        value={date}
+                                        mode={mode}
+                                        display= "default"
+                                        onChange={onChangeDate}
+                                    />
+                                )}
+                                
+                                
+                            </TouchableOpacity>
                             <TextInput 
                                 value={itemDetail}
                                 onChangeText={setItemDetail}
