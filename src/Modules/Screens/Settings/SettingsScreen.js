@@ -1,20 +1,18 @@
 import React from 'react';
 import { SafeAreaView,  Text, TouchableOpacity, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
+import LinearGradient from 'react-native-linear-gradient';
 
-import { useDispatchChangeTheme, useTheme, useThemedValues, useThemedOption } from '../../Theming';
+import { useDispatchChangeTheme, colorNames, useTheme, useThemedOption, useThemedStyles, useThemedColors  } from '../../Theming';
 import { useLocalization, Texts, useLocaleOptions, useLocale, useDispatchChangeLocale } from '../../Localization';
 import OptionMenu from './Components/OptionMenu';
 import { userSelector, signOutRequest } from '../../Auth/Redux/UserRedux';
 
 import getStyles from '../Settings/Styles/SettingsScreenStyles';
 
-
-
 const SettingsScreen = props => {
 
     const currentTheme = useTheme();
-    const {styles, colors} = useThemedValues(getStyles);
     const changeTheme = useDispatchChangeTheme();
     const themeOptions = useThemedOption();
     console.log(themeOptions)
@@ -23,6 +21,9 @@ const SettingsScreen = props => {
     const loc = useLocalization();
     const localeOptions = useLocaleOptions();
     const changeLocale = useDispatchChangeLocale();
+
+    const styles = useThemedStyles(getStyles);
+    const Colors = useThemedColors(getStyles);
 
     const _onSelect_Theme = (key) => {
         changeTheme(key);
@@ -38,8 +39,12 @@ const SettingsScreen = props => {
     }
     const user = useSelector(userSelector);
     return (
+        <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 0, y: 1 }} colors={Colors[colorNames.settings.background]}
+        style={{flex:1}}>
         <View style={styles.container}>
             <SafeAreaView style={{flex: 1}}>
+
+
                 <Text style={styles.nameText}>
                     {user.displayName}
                 </Text>
@@ -63,8 +68,10 @@ const SettingsScreen = props => {
                 <TouchableOpacity style={styles.signOutBox} onPress={_onPress_SignOut}>
                     <Text style={styles.signOutText}>{loc.t(Texts.signOut)}</Text>
                 </TouchableOpacity>
+               
             </SafeAreaView>
         </View>
+        </LinearGradient>
     )
 };
 

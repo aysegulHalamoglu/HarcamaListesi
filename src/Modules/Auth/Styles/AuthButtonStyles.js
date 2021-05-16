@@ -7,6 +7,7 @@ const styles = (Colors) => StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
+
     },
     text: {
         fontFamily: Fonts.Families.bold,

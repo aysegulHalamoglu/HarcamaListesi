@@ -9,18 +9,18 @@ import {
     TouchableOpacity,
     Keyboard,
     Platform,
-    StyleSheet,
+    StatusBar,
 } from 'react-native';
 
-import { Images } from '../../Constants';
+import LinearGradient from 'react-native-linear-gradient';
 
 import AuthInput from '../Components/AuthInput';
 import AuthButton from '../Components/AuthButton';
 
 import getStyles from '../Styles/AuthScreenStyles';
-import { useThemedStyles , colorNames , useThemedColors } from '../../Theming';
+import { useThemedStyles, colorNames, useThemedColors } from '../../Theming';
 import { Texts, useLocalization, useLocale } from '../../Localization';
-import {customUppercase} from '../../Localization/Utils/LocalUpperCase'
+import { customUppercase } from '../../Localization/Utils/LocalUpperCase'
 
 const AuthScreenUI = props => {
 
@@ -41,71 +41,89 @@ const AuthScreenUI = props => {
                 style={styles.keyboardAvoiding}
                 behavior={Platform.OS === 'ios' ? 'padding' : null}
                 keyboardVerticalOffset={0}>
-                <TouchableOpacity
-                    style={styles.container}
-                    activeOpacity={1}
-                    onPress={Keyboard.dismiss}
+                <StatusBar
+                    backgroundColor={Colors[colorNames.auth.status]}
+                    barStyle="dark-content" />
+                <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 0, y: 1 }} colors={Colors[colorNames.auth.background]}
+                    style={{ flex: 1 }}>
+                    <View style={styles.container} >
 
-                >
-                    <View style={StyleSheet.absoluteFillObject}>
-                        <Image source={Images.backgroundImage} blurRadius={20} />
-                    </View>
+                        <View style={styles.appLogoContainer}>
+                            <Image source={Colors[colorNames.image.appLogoLarge]} style={styles.imageLogo} />
+                        </View>
 
-                    <View style={styles.appLogoContainer}>
-                    <Image source={Colors[colorNames.image.appLogoLarge]} style={styles.image} />
-                    </View>
-                    <View style={styles.inputsContainer}>
-                        {
-                            isLogin ?
-                                null
-                                :
+                     
+                       <View style={styles.authContainer}>
+                       <TouchableOpacity
+                            style={{flex:1}}
+                            activeOpacity={1}
+                            onPress={Keyboard.dismiss}
+
+                        >
+
+                            <View style={styles.inputsContainer}>
+                                {
+                                    isLogin ?
+                                        null
+                                        :
+                                        <View style={styles.inputContainer}>
+                                            <AuthInput
+                                                value={props.nameValue}
+                                                onChangeText={props.onChangeText_Name}
+                                                autoCapitalize={'words'}
+                                                placeholder={loc.t(Texts.username)} />
+                                        </View>
+                                }
                                 <View style={styles.inputContainer}>
                                     <AuthInput
-                                        value={props.nameValue}
-                                        onChangeText={props.onChangeText_Name}
-                                        autoCapitalize={'words'}
-                                        placeholder={loc.t(Texts.username)} />
+                                        value={props.emailValue}
+                                        onChangeText={props.onChangeText_Email}
+                                        autoCapitalize={'none'}
+                                        placeholder={loc.t(Texts.email)} />
                                 </View>
-                        }
-                        <View style={styles.inputContainer}>
-                            <AuthInput
-                                value={props.emailValue}
-                                onChangeText={props.onChangeText_Email}
-                                autoCapitalize={'none'}
-                                placeholder={loc.t(Texts.email)} />
-                        </View>
-                        <View style={styles.inputContainer}>
-                            <AuthInput
-                                value={props.passwordValue}
-                                onChangeText={props.onChangeText_Password}
-                                autoCapitalize={'none'}
-                                placeholder={loc.t(Texts.password)}
-                                secureTextEntry={true} />
-                        </View>
-                        <View style={styles.inputContainer}>
-                            <AuthInput
-                                value={props.passwordConfirmValue}
-                                onChangeText={props.onChangeText_PasswordConfirm}
-                                autoCapitalize={'none'}
-                                placeholder={loc.t(Texts.passwordConfirm)}
-                                secureTextEntry={true} />
-                        </View>
-                    </View>
-                    <View style={styles.buttonsContainer}>
-                        <AuthButton
-                            onPress={isLogin ? props.onPress_SignIn : props.onPress_SignUp}
-                            disabled={false}
-                            text={isLogin ? loginUppercase : signupUppercase} />
-                        <TouchableOpacity style={styles.signupTouchable} onPress={() => setIsLogin(!isLogin)}>
-                            <Text style={styles.signupText}>
-                                {isLogin ? loc.t(Texts.signUp) : loc.t(Texts.login)}
-                            </Text>
+                                <View style={styles.inputContainer}>
+                                    <AuthInput
+                                        value={props.passwordValue}
+                                        onChangeText={props.onChangeText_Password}
+                                        autoCapitalize={'none'}
+                                        placeholder={loc.t(Texts.password)}
+                                        secureTextEntry={true} />
+                                </View>
+                                <View style={styles.inputContainer}>
+                                    <AuthInput
+                                        value={props.passwordConfirmValue}
+                                        onChangeText={props.onChangeText_PasswordConfirm}
+                                        autoCapitalize={'none'}
+                                        placeholder={loc.t(Texts.passwordConfirm)}
+                                        secureTextEntry={true} />
+                                </View>
+                            </View>
+
+                            <View style={styles.buttonsContainer}>
+                                <AuthButton
+                                    onPress={isLogin ? props.onPress_SignIn : props.onPress_SignUp}
+                                    disabled={false}
+                                    text={isLogin ? loginUppercase : signupUppercase} />
+                                <TouchableOpacity style={styles.signupTouchable} onPress={() => setIsLogin(!isLogin)}>
+                                    <Text style={styles.signupText}>
+                                        {isLogin ? loc.t(Texts.signUp) : loc.t(Texts.login)}
+                                    </Text>
+                                </TouchableOpacity>
+                            </View>
+
                         </TouchableOpacity>
-                    </View>
-                    <View style={styles.footerContainer}>
-                        <Text style={styles.footer}></Text>
-                    </View>
-                </TouchableOpacity>
+                       </View>
+                    
+
+                        <View style={styles.footerContainer}>
+                            <View style={styles.imageFooter}>
+                                <Image source={Colors[colorNames.image.backgroundImage]} style={styles.image} />
+                            </View>
+                        </View>
+                        
+                        </View>
+
+                </LinearGradient>
             </KeyboardAvoidingView>
         </SafeAreaView>
     );

@@ -7,6 +7,7 @@ const styles = (Colors) => StyleSheet.create({
         flex:1,
         paddingHorizontal: Metrics.textMargin,
         backgroundColor: Colors[colorNames.auth.inputBackground],
+        borderRadius:Metrics.borderRadiusStandard,
     },
     input: {
         flex:1,

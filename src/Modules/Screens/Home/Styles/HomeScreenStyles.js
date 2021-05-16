@@ -1,8 +1,9 @@
 import { StyleSheet } from 'react-native';
 import { Metrics, Fonts } from '../../../Constants';
-import { colorNames } from '../../../Theming';
+import  {colorNames} from "../../../Theming";
 
-export default StyleSheet.create ({
+
+const styles = (Colors) => StyleSheet.create({
 
     container: {
         flex: 1,
@@ -10,6 +11,7 @@ export default StyleSheet.create ({
         flexDirection: 'column',
         
     },
+
     text: {
         fontFamily: Fonts.Families.semibold,
         color: 'white',
@@ -24,7 +26,7 @@ export default StyleSheet.create ({
         padding: Metrics.marginHorizontal,
         justifyContent: 'space-between',
         alignItems: 'center',
-        marginTop: 20,
+        marginTop: Metrics.marginHorizontal,
     },
     profileContainer: {
         width: Metrics.width * 0.40,
@@ -33,14 +35,14 @@ export default StyleSheet.create ({
         justifyContent: 'center',
     },
     welcomeText: {
-        fontFamily: Fonts.Families.light,
-        fontSize: 20,
-        color: '#202020',
+        fontFamily: Fonts.Families.regular,
+        fontSize: Fonts.Sizes.sixteen,
+        color: Colors[colorNames.home.welcomeText],
     },
     profileName: {
-        fontFamily: Fonts.Families.semibold,
-        fontSize: 25,
-        color: '#202020',
+        fontFamily: Fonts.Sizes.regular,
+        fontSize:Fonts.Sizes.sixteen,
+        color: Colors[colorNames.home.profileName],
     },
     settingsIcon: {
         flexDirection: 'row',
@@ -55,7 +57,7 @@ export default StyleSheet.create ({
         height: Metrics.width * 0.5,
         //backgroundColor: 'red',
         alignItems: 'center',
-        marginTop: 20,
+        marginTop: Metrics.margin,
     },
     budgetCard: {
         width: Metrics.width * 0.8,
@@ -94,16 +96,10 @@ export default StyleSheet.create ({
     },
 
     titleText: {
-        fontSize: Fonts.Sizes.thirty,
-        fontFamily: Fonts.Families.bold,
-        color: 'white',
-        marginLeft: 10,
-    },
-    textButton: {
-        fontSize: Fonts.Sizes.twelve,
-        fontFamily: Fonts.Families.semibold,
-        color: 'white',
-        marginRight: 25,
+        fontSize: Fonts.Sizes.twenty,
+        fontFamily: Fonts.Families.regular,
+        color: Colors[colorNames.home.headerExpenses],
+        marginLeft: Metrics.marginHorizontal*2,
     },
     
     //FLATLIST CONTAINER
@@ -116,12 +112,13 @@ export default StyleSheet.create ({
     },
     flatList: {
         width: Metrics.width * 0.9,
-        height: Metrics.width * 0.25,
+        height: Metrics.width * 0.20,
         marginBottom: Metrics.width * 0.1,
-        backgroundColor: 'rgba(255, 255, 255, 0.5)',
-        justifyContent: 'center',
+        flexDirection: 'row',
+        backgroundColor: Colors[colorNames.home.itemContainer], //rgba(255, 255, 255, 0.5)
+        justifyContent: 'space-evenly',
         alignItems: 'center',
-        borderColor: 'grey',
+        borderColor: Colors[colorNames.home.itemContainerBorder],
         borderWidth: 1,
         borderRadius: 20,
         },
@@ -137,8 +134,7 @@ export default StyleSheet.create ({
         height: Metrics.width * 0.21,
         borderTopLeftRadius: 75,
         borderTopRightRadius: 75,
-        backgroundColor: 'white',
-        opacity: 0.7,
+        backgroundColor: Colors[colorNames.home.tabNavigationContainer],
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',   
@@ -148,7 +144,7 @@ export default StyleSheet.create ({
         height: Metrics.width * 0.2,
         alignItems: 'center',
         justifyContent: 'center',
-        paddingBottom: 10,
+        paddingBottom: Metrics.paddingBottom,
     },
 
     //BASE EKLEME
@@ -162,7 +158,21 @@ export default StyleSheet.create ({
     },
     itemText: {
         fontFamily: Fonts.Families.medium,
-        fontSize: 16,
+        fontSize: Fonts.Sizes.sixteen,
+        color: Colors[colorNames.home.itemText]
+    },
+    itemDate: {
+        fontFamily: Fonts.Families.medium,
+        fontSize: Fonts.Sizes.sixteen,
+        color: Colors[colorNames.home.itemDate]
+    },
+
+    itemCost: {
+        fontFamily: Fonts.Families.medium,
+        fontSize: Fonts.Sizes.thirty,
+        color: Colors[colorNames.home.itemCost],
     },
 
 });
+
+export default styles;

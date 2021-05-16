@@ -5,12 +5,31 @@ import { colorNames, constantColors } from '../../../Theming/Colors';
 
 
 export default Colors => StyleSheet.create({
+
+    container: {
+      backgroundColor:  Colors[colorNames.calendar.containerbackground],
+      marginRight: Metrics.marginHorizontal*0.9,
+      marginTop: Metrics.paddingTop*1.4,
+      padding: Metrics.width*0.03,
+      borderWidth:1,
+      borderColor:  Colors[colorNames.calendar.itemContainerBorder],
+      borderRadius: Metrics.borderRadiusStandard,
+    },   
     
+    itemText:{
+      color: Colors[colorNames.calendar.itemText],
+    },
+
+    dateText:{
+      color: Colors[colorNames.calendar.dateText],
+    },
+
     categoryNameContainer:{
-        flexDirection: 'row',
+        flexDirection: 'column',
         justifyContent: 'space-between',
-        alignItems: 'center',
-        backgroundColor: Colors[constantColors.transparent]
+        alignItems: 'flex-start',
+        marginLeft: Metrics.marginHorizontal,
+        backgroundColor: Colors[constantColors.white]
     },
     
     categoryNameText:{

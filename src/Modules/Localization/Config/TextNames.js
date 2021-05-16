@@ -36,7 +36,7 @@ export const Texts = {
     description: 'note',
     
 
-    
+    // calendar
     calendarHeader: 'calendarHeader',
 };
 
@@ -51,7 +51,7 @@ export const English = {
     [Texts.username]: 'Username',
     
     // settings
-    [Texts.settings]: 'Settings',
+    [Texts.settings]: 'SETTINGS',
     [Texts.colorTheme]: 'Color Theme',
     [Texts.dark]: 'Dark',
     [Texts.light]: 'Light',
@@ -65,7 +65,7 @@ export const English = {
     [Texts.totalBudget]: 'Total Budget',
     [Texts.income]: 'Income',
     [Texts.expense]: 'Expense',
-    [Texts.headerExpenses]: ' MY EXPENSES',
+    [Texts.headerExpenses]: ' My Expenses',
     [Texts.textButton]: 'View All',
 
     // AddEditScreen
@@ -77,7 +77,7 @@ export const English = {
     [Texts.date]: 'DD/MM/YY',
     [Texts.description]: 'Description',
     
-
+    // calendar
     [Texts.calendarHeader]: 'CASH FLOW',
 };
 
@@ -92,7 +92,7 @@ export const Turkish = {
     [Texts.username]: 'Kullanıcı Adı',
     
     // settings
-    [Texts.settings]: 'Ayarlar',
+    [Texts.settings]: 'AYARLAR',
     [Texts.colorTheme]: 'Renk Teması',
     [Texts.dark]: 'Karanlık',
     [Texts.light]: 'Aydınlık',
@@ -106,7 +106,7 @@ export const Turkish = {
     [Texts.totalBudget]: 'Net Bütçe',
     [Texts.income]: 'Gelir',
     [Texts.expense]: 'Gider',
-    [Texts.headerExpenses]: 'HARCAMALARIM',
+    [Texts.headerExpenses]: 'Harcamalarım',
     [Texts.textButton]: 'Tümünü Gör',
 
     
@@ -119,7 +119,7 @@ export const Turkish = {
     [Texts.date]: 'GG/AA/YY',
     [Texts.description]: 'Açıklama',
     
-   
+    // calendar
     [Texts.calendarHeader]: 'HARCAMA AKIŞI',
 
 };

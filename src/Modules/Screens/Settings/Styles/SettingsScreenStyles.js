@@ -3,10 +3,9 @@ import { Metrics, Fonts } from '../../../Constants';
 import { colorNames } from '../../../Theming';
 
 
-export default Colors => StyleSheet.create({
+const styles = (Colors) => StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: Colors[colorNames.settings.background],
         padding: Metrics.marginHorizontal,
     },
     nameText: {
@@ -39,3 +38,5 @@ export default Colors => StyleSheet.create({
         color: Colors[colorNames.settings.signOutButtonText],
     }
 });
+
+export default styles;

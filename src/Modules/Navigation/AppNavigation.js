@@ -12,14 +12,15 @@ import AddExpenseModal from '../Screens/Home/Components/AddExpenseModal';
 
 
 import { useLocalization, Texts } from '../Localization';
-import { useThemedColors } from '../Theming';
+import { colorNames, useThemedColors } from '../Theming';
+import { Fonts } from '../Constants';
 
 
 
 const AppStack = createStackNavigator();
 
 const AppNavigation = () => {
-    const colors = useThemedColors();
+    const Colors = useThemedColors();
     const loc = useLocalization();
 
     return (
@@ -39,6 +40,16 @@ const AppNavigation = () => {
                 component = {CalendarScreen}
                 options = {{
                     title: loc.t(Texts.calendarHeader),
+                    headerStyle: {
+                        backgroundColor: Colors[colorNames.header.background],
+                        borderBottomColor: Colors[colorNames.header.headerborder],
+                        borderBottomWidth: 1,
+                    },
+                    headerTintColor: Colors[colorNames.header.text],
+                    headerTitleStyle: {
+                        fontFamily:Fonts.Families.medium,
+                        fontWeight: 'bold',
+                      },
                 }}
             />
   
@@ -48,6 +59,16 @@ const AppNavigation = () => {
                 component = {SettingsScreen}
                 options = {{
                     title: loc.t(Texts.settings),
+                    headerStyle: {
+                        backgroundColor: Colors[colorNames.header.background],
+                        borderBottomColor: Colors[colorNames.header.headerborder],
+                        borderBottomWidth: 1,
+                    },
+                    headerTintColor: Colors[colorNames.header.text],
+                    headerTitleStyle: {
+                        fontFamily:Fonts.Families.medium,
+                        fontWeight: 'bold',
+                      },
                 }}
             />
 
