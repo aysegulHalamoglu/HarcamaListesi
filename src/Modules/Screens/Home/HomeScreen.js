@@ -50,14 +50,6 @@ const HomeScreen = props => {
         return () => off();
     }, [])
 
-    const _onPress_ModalBackdrop = () => {
-        setIsModalVisible(false);
-    }
-
-    const _onPress_OpenModal = () => {
-        setIsModalVisible(true);
-    }
-
     // Silme modu kapalıyken ekleme sayfasına götürsün
     // Silme modu açıkken de silme modunu kapatsın.
     const _onPress_Add = () => {
@@ -128,15 +120,11 @@ const HomeScreen = props => {
                 </View>
 
                 <View>
-                    <Text style={styles.itemCost}>{item.cost}</Text>
+                    <Text style={styles.itemCost}>₺ {item.cost}</Text>
                 </View>
 
             </TouchableOpacity>
         )
-    }
-
-    const _ItemSeparator = () => {
-        return <View style={styles.separator} />
     }
 
     const _onPress_Settings = () => {
@@ -224,18 +212,6 @@ const HomeScreen = props => {
                         </TouchableOpacity>
                         <Svgs.ChartTabIcon width="40%" height="40%"></Svgs.ChartTabIcon>
                         </View>
-                        <Modal
-                            isVisible={isModalVisible}
-                            // arkaplana tıklayınca fonksiyonu
-                            onBackdropPress={_onPress_ModalBackdrop}
-                            style={styles.modal}
-                            // açılış animasyonu
-                            animationType="slide"
-                            // kapanış animasyonu
-                            animationOut="fadeOut"
-                        >
-                            <AddEditScreen />
-                        </Modal>
                     
                 </LinearGradient>
             </View>

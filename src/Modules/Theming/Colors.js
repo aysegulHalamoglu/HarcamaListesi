@@ -57,6 +57,7 @@ export const constantColors = {
         pink: '#C981CE',
         yellow: '#DFFF00',
         green: '#00EE1D',
+        red: '#B80000',
     }
    
 };
@@ -173,7 +174,7 @@ export const darkColors = {
     [home.itemContainerBorder]:constantColors.greys[5],
     [home.itemText]:constantColors.greys[6],
     [home.itemDate]:constantColors.greys[6],
-    [home.itemCost]:constantColors.text.green,
+    [home.itemCost]:constantColors.text.red,
     [home.tabNavigationContainer]:toRGBA(constantColors.black, 50),
     // settings
     [settings.background]: constantColors.backgrounds[3],
@@ -238,7 +239,7 @@ export const lightColors = {
     [home.itemContainerBorder]:constantColors.white,
     [home.itemText]:constantColors.greys[6],
     [home.itemDate]:constantColors.greys[6],
-    [home.itemCost]:constantColors.text.green,
+    [home.itemCost]:constantColors.text.red,
     [home.tabNavigationContainer]:constantColors.white,
     
 

@@ -158,8 +158,9 @@ const styles = (Colors) => StyleSheet.create({
     },
     itemText: {
         fontFamily: Fonts.Families.medium,
-        fontSize: Fonts.Sizes.sixteen,
-        color: Colors[colorNames.home.itemText]
+        fontSize: Fonts.Sizes.thirty,
+        color: Colors[colorNames.home.itemText],
+        marginBottom: 10
     },
     itemDate: {
         fontFamily: Fonts.Families.medium,
@@ -168,8 +169,8 @@ const styles = (Colors) => StyleSheet.create({
     },
 
     itemCost: {
-        fontFamily: Fonts.Families.medium,
-        fontSize: Fonts.Sizes.thirty,
+        fontFamily: Fonts.Families.semibold,
+        fontSize: Fonts.Sizes.fifty,
         color: Colors[colorNames.home.itemCost],
     },
 
