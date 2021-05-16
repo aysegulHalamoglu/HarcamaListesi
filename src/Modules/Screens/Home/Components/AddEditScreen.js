@@ -69,9 +69,13 @@ const AddEditScreen = props => {
     const [ date, setDate ] = useState(new Date());
     const [ mode, setMode ] = useState('date');
     const [ show, setShow ] = useState(false);
-    const [ expenseDate, setExpenseDate ] = useState('');
+    const [ todayDate, setDateToday ] = useState('');
     const [ itemIsBought, setItemIsBought ] = useState(false);
+<<<<<<< HEAD
     const [ category, setCategory ] = useState('');
+=======
+    const [pickerVis, setPickerVis] = useState(false);
+>>>>>>> 0b3987056397a12d161b3fa777c7055c9d52b5e5
     const loc = useLocalization();
 
     // Edit ekranı için gelen item'in id'si (eğer bir şey gönderilmemişse params: undefined oluyor)
@@ -84,9 +88,6 @@ const AddEditScreen = props => {
         })
     }, []);
 
-
-    
-
     // Ekrana gelen bir itemKey varsa, item'in detayları çekilsim
     useEffect(() => {
         if (itemKey) {
@@ -95,16 +96,20 @@ const AddEditScreen = props => {
                 setItemName(item.title);
                 setItemCount(item.count);
                 setItemDetail(item.detail);
-                setExpenseDate(item.expenseDate);
+                setDate(item.date);
+                setDateToday(item.todayDate);
                 setItemIsBought(item.isBought);
             });
         }
     }, []);
 
+<<<<<<< HEAD
 
 
 
 
+=======
+>>>>>>> 0b3987056397a12d161b3fa777c7055c9d52b5e5
     const _onPress_AddEdit = () => {
         // State'teki değerlerden yeni bir item nesnesi oluşturalım
         const item = {
@@ -113,7 +118,7 @@ const AddEditScreen = props => {
             count: itemCount,
             detail: itemDetail,
             date: date,
-            expenseDate: expenseDate,
+            todayDate: todayDate,
             isBought: itemIsBought,
         }
 
@@ -133,13 +138,15 @@ const AddEditScreen = props => {
     const onChangeDate = (event, selectedDate) => {
         if (event.type === 'dismissed') {
             setShow(false);
+            setDate(currentDate);
+            setDateToday(moment(currentDate).format('DD-MM-YYYY'));
         }
 
         else {
             const currentDate = selectedDate;
             setShow(Platform.OS === 'ios');
             setDate(currentDate);
-            setExpenseDate(moment(currentDate).format('DD-MM-YYYY'));
+            setDateToday(moment(currentDate).format('DD-MM-YYYY'));
         }
     };
 
@@ -213,8 +220,8 @@ const AddEditScreen = props => {
 
                             <TouchableOpacity onPress={showModeDate}>
                             <TextInput
-                                    value={expenseDate}
-                                    onChange={setExpenseDate}
+                                    value={todayDate}
+                                    onChangeText={setDate}
                                     style={styles.input}
                                     placeholder = {loc.t(Texts.date)}
                                     placeholderTextColor="rgba(0,0,0,0.3)"
@@ -224,10 +231,9 @@ const AddEditScreen = props => {
                                 
                                 {show === true && (
                                     <DateTimePicker
-                                        testID='dateTimePicker'
+                                        testID='datePicker'
                                         value={date}
                                         mode={mode}
-                                        is24Hour={true}
                                         display= "default"
                                         onChange={onChangeDate}
                                     />

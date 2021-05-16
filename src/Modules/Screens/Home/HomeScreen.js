@@ -11,9 +11,11 @@ import { addItem, deleteItem, subscribeToItemData, updateItem } from './API/Fire
 //Assets-Styling
 import { Svgs } from '../../Constants/'
 import { Metrics, Fonts } from '../../Constants';
-import styles from './Styles/HomeScreenStyles';
+import getStyles from './Styles/HomeScreenStyles';
 import AddEditScreen from './Components/AddEditScreen';
 import Modal from 'react-native-modal';
+import { useThemedStyles , colorNames , useThemedColors } from '../../Theming';
+
 
 
 
@@ -32,6 +34,9 @@ const HomeScreen = props => {
     const [itemList, setItemList] = useState(null);
     const [isDeleteModeOn, setIsDeleteModeOn] = useState(false);
     const [isModalVisible, setIsModalVisible] = useState(false);
+
+    const styles = useThemedStyles(getStyles);
+    const Colors = useThemedColors(getStyles);
     
     const loc = useLocalization();
 
@@ -96,7 +101,16 @@ const HomeScreen = props => {
                 style={styles.flatList}
                 onPress={() => _onPress_Edit(item)}
                 onLongPress={() => _onLongPress_Item(item)}>
-                <Text style={[styles.itemText, { color: item.isBought ? 'rgba(0,0,0,0.4)' : 'black' }]}>{item.title}</Text>
+                
+                <View>
+                <Text style={styles.itemText}>{item.title}</Text>
+                <Text style={styles.itemDate}>{item.title}</Text>
+                </View>
+
+                <View>
+                <Text style={styles.itemCost}>100 TL</Text>
+                </View>
+
             </TouchableOpacity>
         )
     }
@@ -119,9 +133,9 @@ const HomeScreen = props => {
         <>
             <View style={styles.container}>
                 <StatusBar
-                    backgroundColor="#F1F2B5"
+                    backgroundColor={Colors[colorNames.home.status]}
                     barStyle="dark-content" />
-                <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 0, y: 1 }} colors={["#F1F2B5", "#C779D0", "#4BC0C8"]}
+                <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 0, y: 1 }} colors={Colors[colorNames.home.background]}
                             style={styles.container}>
 
                     <View style={styles.stackContainer}>
@@ -138,7 +152,7 @@ const HomeScreen = props => {
                     <View style={styles.accountContainer}>
                         <TouchableOpacity onPress={_onPress_Calendar}>
                             <LinearGradient
-                                start={{ x: 1, y: 0 }} end={{ x: 0, y: 1 }} colors={['#EC0076', '#AB48E4', '#6754B7', '#5D9ACF', '#00DCFF']}
+                                start={{ x: 1, y: 0 }} end={{ x: 0, y: 1 }} colors={Colors[colorNames.home.card]}
                                 style={styles.budgetCard}>
                                 <View style={styles.topCardContainer}>
                                     <Text style={{ fontSize: Fonts.Sizes.twentytwo, color: 'white', fontFamily: Fonts.Families.semibold }}>{loc.t(Texts.totalBudget)} </Text>
@@ -161,9 +175,6 @@ const HomeScreen = props => {
                     </View>
                     <View style={styles.titleContainer}>
                         <Text style={styles.titleText}>{loc.t(Texts.headerExpenses)} </Text>
-                        <TouchableOpacity>
-                            <Text style={styles.textButton}>{loc.t(Texts.textButton)}</Text>
-                        </TouchableOpacity>
                     </View>
                     <View style={styles.flatListContainer}>
                         <FlatList                             
@@ -180,7 +191,7 @@ const HomeScreen = props => {
                             onLongPress={_onLongPress_Add}
                             >
                             <View style={styles.addButtonContainer}>
-                                <Svgs.AddIcon width="100%" height="100%"></Svgs.AddIcon>
+                                <Svgs.AddIcon width="100%" height="100%" fill="#dd0000"></Svgs.AddIcon>
                             </View>
                         </TouchableOpacity>
                         <Svgs.ChartTabIcon width="40%" height="40%"></Svgs.ChartTabIcon>
