@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { SafeAreaView, ScrollView, Text, TextInput, TouchableOpacity, View, StatusBar, Platform } from 'react-native';
+import { KeyboardAvoidingView, SafeAreaView, ScrollView, Text, TextInput, TouchableOpacity, View, StatusBar, Platform, FlatList, Image } from 'react-native';
 
 import LinearGradient from 'react-native-linear-gradient';
 import { addItem, getItemDetail, updateItem } from '../API/Firebase';
@@ -11,6 +11,56 @@ import moment from 'moment';
 import {Svgs} from '../../../Constants';
 import styles from '../Styles/AddEditScreenStyles';
 
+const Categories = [
+    {
+        id: 1,
+        categoryName: 'MARKET',
+        image: require('../../../Assets/Images//CategoriesIcons/market.png')
+    },
+    {
+        id: 2,
+        categoryName: 'GİYİM',
+        image: require('../../../Assets/Images//CategoriesIcons/giyim.png')
+    },
+    {
+        id: 3,
+        categoryName: 'FATURALAR',
+        image: require('../../../Assets/Images//CategoriesIcons/bill.png')
+
+    },
+    {
+        id: 4,
+        categoryName: 'MEKAN',
+        image: require('../../../Assets/Images//CategoriesIcons/mekan.png')
+    },
+    {
+        id: 5,
+        categoryName: 'EĞLENCE',
+        image: require('../../../Assets/Images//CategoriesIcons/fun.png')
+    },
+    {
+        id: 6,
+        categoryName: 'TEKNOLOJİ',
+        image: require('../../../Assets/Images//CategoriesIcons/tech.png')
+    },
+    {
+        id: 7,
+        categoryName: 'KOZMETİK',
+        image: require('../../../Assets/Images//CategoriesIcons/care.png')
+    },
+    {
+        id: 8,
+        categoryName: 'SPOR',
+        image: require('../../../Assets/Images//CategoriesIcons/spor.png')
+    },
+    {
+        id: 9,
+        categoryName: 'HEDİYE',
+        image: require('../../../Assets/Images//CategoriesIcons/gift.png')
+    },
+];
+
+
 const AddEditScreen = props => {
 
     const [ itemName, setItemName ] = useState('');
@@ -21,6 +71,7 @@ const AddEditScreen = props => {
     const [ show, setShow ] = useState(false);
     const [ expenseDate, setExpenseDate ] = useState('');
     const [ itemIsBought, setItemIsBought ] = useState(false);
+    const [ category, setCategory ] = useState('');
     const loc = useLocalization();
 
     // Edit ekranı için gelen item'in id'si (eğer bir şey gönderilmemişse params: undefined oluyor)
@@ -49,6 +100,8 @@ const AddEditScreen = props => {
             });
         }
     }, []);
+
+
 
 
 
@@ -101,25 +154,39 @@ const AddEditScreen = props => {
 
 
     return (
-        <View style={styles.maincontainer}>
+        <KeyboardAvoidingView 
+            behavior={Platform.OS === "ios" ? "padding" : "height"}
+            style={styles.maincontainer}>
+            <StatusBar
+                    backgroundColor="#FFFFFF"
+                    barStyle="dark-content" />
             <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 0, y: 1 }} 
                             colors={["#FFFFFF", "#FFE1E1"]}
                             style={styles.maincontainer}>
                 <TouchableOpacity style={styles.exitButtonContainer} onPress={_onPress_CloseModal}>
                     <Svgs.CloseModalIcon width="40%" height="40%"></Svgs.CloseModalIcon>
                 </TouchableOpacity>
+                <View style={styles.categoriesButtonContainer}>
+                    <FlatList
+                    data={Categories}
+                    renderItem={({item}) => (
+                        <TouchableOpacity style={{width:75, height: 75, margin: 10, alignItems: 'center', justifyContent: 'center'}}>
+                            <Image source={item.image}
+                            ></Image>
+                            <Text style={{paddingTop: 10, color: 'grey'}}>{item.categoryName}</Text>
+                        </TouchableOpacity>
+                    )}
+                    horizontal={true}
+                    
+                    />
+                </View>
                 <View style={styles.container}>
                     <View style={styles.leftContainer}>
                         <Text style={styles.verticalTitle}>{loc.t(Texts.verticalTitle)}</Text>
                     </View>
                     <View style={styles.rightContainer}>
                         
-                        <View style={styles.categoriesButtonContainer}>
-                            <Text style={styles.categoryTitle}>{loc.t(Texts.categories)}</Text>
-                            <TouchableOpacity>
-                                <Svgs.CategoryIcon></Svgs.CategoryIcon>
-                            </TouchableOpacity>
-                        </View>
+                        
                         <View style={styles.titleContainer}>
                             <Text style={styles.costTitle}>{loc.t(Texts.expenseAmount)}</Text>
                         </View>
@@ -186,7 +253,7 @@ const AddEditScreen = props => {
                 </View>
 
             </LinearGradient>
-       </View>         
+       </KeyboardAvoidingView>         
     );
 };
 

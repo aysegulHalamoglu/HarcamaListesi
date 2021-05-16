@@ -27,51 +27,6 @@ import Modal from 'react-native-modal';
 
 
 
-const dummyCategories = [
-    {
-        categoryId: 1,
-        categoryName: 'MARKET',
-        color: 'green',
-    },
-    {
-        categoryId: 2,
-        categoryName: 'GİYİM',
-        color: 'orange',
-    },
-    {
-        categoryId: 3,
-        categoryName: 'FATURALAR',
-        color: 'blue',
-
-    },
-    {
-        categoryId: 4,
-        categoryName: 'YEME - İÇME',
-        color: 'yellow',
-    },
-    {
-        categoryId: 5,
-        categoryName: 'EĞLENCE',
-        color: 'black',
-    },
-    {
-        categoryId: 6,
-        categoryName: 'TEKNOLOJİ',
-        color: 'lime'
-    },
-    {
-        categoryId: 7,
-        categoryName: 'KOZMETİK',
-        color: 'pink',
-    },
-    {
-        categoryId: 8,
-        categoryName: 'HEDİYE',
-        color: 'red'
-    },
-]
-
-
 const HomeScreen = props => {
 
     const [itemList, setItemList] = useState(null);

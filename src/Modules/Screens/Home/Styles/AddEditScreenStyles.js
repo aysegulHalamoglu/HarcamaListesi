@@ -33,13 +33,14 @@ export default StyleSheet.create({
     },
     // CONTENT CONTAINERS
     categoriesButtonContainer: {
-        flex: 0.1,
+        flex: 0.15,
         //backgroundColor: 'red',
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'flex-end',
     },
     titleContainer:{
+        marginTop: Metrics.width * 0.1,
         flex: 0.05,
         //backgroundColor: 'orange',
         justifyContent: 'center',
@@ -56,6 +57,8 @@ export default StyleSheet.create({
         //backgroundColor: 'purple',
     },
     inputCostContainer: {
+        marginTop: Metrics.width * 0.15,
+        marginBottom: Metrics.width * 0.15,
         flex: 0.5,
         justifyContent: 'center',
         alignItems: 'center',
