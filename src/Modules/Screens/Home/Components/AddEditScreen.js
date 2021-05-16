@@ -64,15 +64,17 @@ const Categories = [
 const AddEditScreen = props => {
 
     const [ itemName, setItemName ] = useState('');
-    const [ itemCount, setItemCount ] = useState('');
+    const [ itemCost, setItemCost ] = useState('');
     const [ itemDetail, setItemDetail ] = useState('');
     const [ date, setDate ] = useState(new Date());
     const [ mode, setMode ] = useState('date');
     const [ show, setShow ] = useState(false);
-    const [ todayDate, setDateToday ] = useState('');
+    const [ expenseDate, setExpenseDate ] = useState('');
     const [ itemIsBought, setItemIsBought ] = useState(false);
     
     const loc = useLocalization();
+
+
 
     // Edit ekranı için gelen item'in id'si (eğer bir şey gönderilmemişse params: undefined oluyor)
     const itemKey = props.route.params?.itemKey;
@@ -90,10 +92,9 @@ const AddEditScreen = props => {
             getItemDetail(itemKey, item => {
                 // Gelen item'in özelliklerini state'e atalım
                 setItemName(item.title);
-                setItemCount(item.count);
+                setItemCost(item.cost);
                 setItemDetail(item.detail);
-                setDate(item.date);
-                setDateToday(item.todayDate);
+                setExpenseDate(item.expenseDate);
                 setItemIsBought(item.isBought);
             });
         }
@@ -105,10 +106,10 @@ const AddEditScreen = props => {
         const item = {
             key: itemKey,
             title: itemName,
-            count: itemCount,
+            cost: itemCost,
             detail: itemDetail,
             date: date,
-            todayDate: todayDate,
+            expenseDate: expenseDate,
             isBought: itemIsBought,
         }
 
@@ -129,14 +130,14 @@ const AddEditScreen = props => {
         if (event.type === 'dismissed') {
             setShow(false);
             setDate(currentDate);
-            setDateToday(moment(currentDate).format('DD-MM-YYYY'));
+            setExpenseDate(moment(currentDate).format('DD-MM-YYYY'));
         }
 
         else {
             const currentDate = selectedDate;
             setShow(Platform.OS === 'ios');
             setDate(currentDate);
-            setDateToday(moment(currentDate).format('DD-MM-YYYY'));
+            setExpenseDate(moment(currentDate).format('DD-MM-YYYY'));
         }
     };
 
@@ -151,9 +152,7 @@ const AddEditScreen = props => {
 
 
     return (
-        <KeyboardAvoidingView 
-            behavior={Platform.OS === "ios" ? "padding" : "height"}
-            style={styles.maincontainer}>
+        <View style={styles.maincontainer}>
             <StatusBar
                     backgroundColor="#FFFFFF"
                     barStyle="dark-content" />
@@ -192,8 +191,8 @@ const AddEditScreen = props => {
                                 <Text style={styles.tlIcon}>{loc.t(Texts.currency)}</Text>
                                 <TextInput style={styles.inputCost}
                                       placeholderStyle={styles.inputCost}
-                                      value={itemCount}
-                                      onChangeText={setItemCount}
+                                      value={itemCost}
+                                      onChangeText={setItemCost}
                                       placeholder= '0'
                                       placeholderTextColor="#BC0336"
                                       keyboardType="number-pad" />
@@ -210,8 +209,8 @@ const AddEditScreen = props => {
 
                             <TouchableOpacity onPress={showModeDate}>
                             <TextInput
-                                    value={todayDate}
-                                    onChangeText={setDate}
+                                    value={expenseDate}
+                                    onChangeText={setExpenseDate}
                                     style={styles.input}
                                     placeholder = {loc.t(Texts.date)}
                                     placeholderTextColor="rgba(0,0,0,0.3)"
@@ -249,7 +248,7 @@ const AddEditScreen = props => {
                 </View>
 
             </LinearGradient>
-       </KeyboardAvoidingView>         
+       </View>         
     );
 };
 

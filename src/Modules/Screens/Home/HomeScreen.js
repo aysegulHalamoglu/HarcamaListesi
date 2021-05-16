@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList, TouchableOpacity, StatusBar, ScrollView } from 'react-native';
+import React, { useState, useEffect, useRef } from 'react';
+import { Animated, View, Text, FlatList, TouchableOpacity, StatusBar, ScrollView } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { useSelector } from 'react-redux';
 import { userSelector } from '../../Auth/Redux/UserRedux';
@@ -34,6 +34,8 @@ const HomeScreen = props => {
     const [itemList, setItemList] = useState(null);
     const [isDeleteModeOn, setIsDeleteModeOn] = useState(false);
     const [isModalVisible, setIsModalVisible] = useState(false);
+    const rotation = useRef(new Animated.Value(0)).current;
+    const rotationValue = useRef(0);
 
     const styles = useThemedStyles(getStyles);
     const Colors = useThemedColors(getStyles);
@@ -60,6 +62,15 @@ const HomeScreen = props => {
     // Silme modu açıkken de silme modunu kapatsın.
     const _onPress_Add = () => {
         if (isDeleteModeOn) {
+            
+            Animated.timing(
+                rotation,
+                {
+                    toValue: rotationValue.current - 1,
+                    duration: 500,
+                    useNativeDriver: false,
+                }
+            ).start();
             setIsDeleteModeOn(false);
         }
         else {
@@ -91,6 +102,15 @@ const HomeScreen = props => {
 
     // Yeni ekle butonuna uzun basılınca silme modu açılsın
     const _onLongPress_Add = () => {
+        
+        Animated.timing(
+            rotation,
+            {
+                toValue: rotationValue.current + 1,
+                duration: 500,
+                useNativeDriver: false,
+            }
+        ).start();
         setIsDeleteModeOn(true);
     }
 
@@ -103,12 +123,12 @@ const HomeScreen = props => {
                 onLongPress={() => _onLongPress_Item(item)}>
                 
                 <View>
-                <Text style={styles.itemText}>{item.title}</Text>
-                <Text style={styles.itemDate}>{item.title}</Text>
+                    <Text style={styles.itemText}>{item.title}</Text>
+                    <Text style={styles.itemDate}>{item.expenseDate}</Text>
                 </View>
 
                 <View>
-                <Text style={styles.itemCost}>100 TL</Text>
+                    <Text style={styles.itemCost}>{item.cost}</Text>
                 </View>
 
             </TouchableOpacity>
@@ -128,6 +148,11 @@ const HomeScreen = props => {
     };
 
     const user = useSelector(userSelector);
+
+    const interpolatedRotation = Animated.modulo(rotation, 3).interpolate({
+        inputRange: [0, 8],
+        outputRange: ["0deg", "360deg"],
+    });
 
     return (
         <>
@@ -190,9 +215,12 @@ const HomeScreen = props => {
                             onPress={_onPress_Add}
                             onLongPress={_onLongPress_Add}
                             >
-                            <View style={styles.addButtonContainer}>
+                            <Animated.View style={[styles.addButtonContainer,
+                                    {
+                                        transform: [{rotate: interpolatedRotation}]
+                                    }]}>
                                 <Svgs.AddIcon width="100%" height="100%" fill="#dd0000"></Svgs.AddIcon>
-                            </View>
+                            </Animated.View>
                         </TouchableOpacity>
                         <Svgs.ChartTabIcon width="40%" height="40%"></Svgs.ChartTabIcon>
                         </View>

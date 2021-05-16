@@ -29,6 +29,8 @@ export const getItemDetail = (itemKey, onRetrieved) => {
 export const addItem = async (item, onAdded) => {
     const itemThumbnail = {
         title: item.title,
+        cost: item.cost,
+        expenseDate: item.expenseDate,
     }
 
     const userId = getCurrentUser().uid;
@@ -60,6 +62,8 @@ export const updateItem = async (item, onUpdated) => {
 
     const itemThumbnail = {
         title: item.title,
+        count: item.cost,
+        expenseDate: item.expenseDate,
     };
 
     await database()
