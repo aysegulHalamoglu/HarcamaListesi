@@ -71,11 +71,7 @@ const AddEditScreen = props => {
     const [ show, setShow ] = useState(false);
     const [ todayDate, setDateToday ] = useState('');
     const [ itemIsBought, setItemIsBought ] = useState(false);
-<<<<<<< HEAD
-    const [ category, setCategory ] = useState('');
-=======
-    const [pickerVis, setPickerVis] = useState(false);
->>>>>>> 0b3987056397a12d161b3fa777c7055c9d52b5e5
+    
     const loc = useLocalization();
 
     // Edit ekranı için gelen item'in id'si (eğer bir şey gönderilmemişse params: undefined oluyor)
@@ -103,13 +99,7 @@ const AddEditScreen = props => {
         }
     }, []);
 
-<<<<<<< HEAD
 
-
-
-
-=======
->>>>>>> 0b3987056397a12d161b3fa777c7055c9d52b5e5
     const _onPress_AddEdit = () => {
         // State'teki değerlerden yeni bir item nesnesi oluşturalım
         const item = {
