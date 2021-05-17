@@ -1,5 +1,4 @@
 import {Dimensions} from 'react-native';
-import { Metrics } from '.';
 
 let windowSize = Dimensions.get('window');
 export const width = windowSize.width;

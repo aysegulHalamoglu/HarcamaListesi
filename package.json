@@ -22,6 +22,7 @@
     "@types/react-native-calendars": "^1.505.3",
     "axios": "^0.21.1",
     "i18n-js": "^3.8.0",
+    "lottie-react-native": "^4.0.2",
     "moment": "^2.29.1",
     "react": "17.0.1",
     "react-native": "0.64.0",
