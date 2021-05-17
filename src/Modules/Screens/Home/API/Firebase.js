@@ -31,6 +31,7 @@ export const addItem = async (item, onAdded) => {
         title: item.title,
         cost: item.cost,
         expenseDate: item.expenseDate,
+        categoryID: item.categoryID,
     }
 
     const userId = getCurrentUser().uid;
@@ -64,6 +65,7 @@ export const updateItem = async (item, onUpdated) => {
         title: item.title,
         count: item.cost,
         expenseDate: item.expenseDate,
+        categoryID: item.categoryID,
     };
 
     await database()

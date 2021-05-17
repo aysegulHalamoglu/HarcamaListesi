@@ -3,15 +3,16 @@ import { KeyboardAvoidingView, SafeAreaView, ScrollView, Text, TextInput, Toucha
 
 import LinearGradient from 'react-native-linear-gradient';
 import { addItem, getItemDetail, updateItem } from '../API/Firebase';
-import { useLocalization, Texts} from '../../../Localization';
+import { useLocalization, Texts } from '../../../Localization';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import moment from 'moment';
 
 //Assets
-import {Svgs} from '../../../Constants';
+import { Svgs } from '../../../Constants';
 import styles from '../Styles/AddEditScreenStyles';
 
-const Categories = [
+
+export const Categories = [
     {
         id: 1,
         categoryName: 'MARKET',
@@ -63,15 +64,16 @@ const Categories = [
 
 const AddEditScreen = props => {
 
-    const [ itemName, setItemName ] = useState('');
-    const [ itemCost, setItemCost ] = useState('');
-    const [ itemDetail, setItemDetail ] = useState('');
-    const [ date, setDate ] = useState(new Date());
-    const [ mode, setMode ] = useState('date');
-    const [ show, setShow ] = useState(false);
-    const [ expenseDate, setExpenseDate ] = useState('');
-    const [ itemIsBought, setItemIsBought ] = useState(false);
-    
+    const [itemName, setItemName] = useState('');
+    const [itemCost, setItemCost] = useState('');
+    const [itemDetail, setItemDetail] = useState('');
+    const [categoryID, setCategoryID] = useState(0);
+    const [date, setDate] = useState(new Date());
+    const [mode, setMode] = useState('date');
+    const [show, setShow] = useState(false);
+    const [expenseDate, setExpenseDate] = useState('');
+    const [itemIsBought, setItemIsBought] = useState(false);
+
     const loc = useLocalization();
 
 
@@ -95,6 +97,7 @@ const AddEditScreen = props => {
                 setItemCost(item.cost);
                 setItemDetail(item.detail);
                 setExpenseDate(item.expenseDate);
+                setCategoryID(item.categoryID);
                 setItemIsBought(item.isBought);
             });
         }
@@ -108,6 +111,7 @@ const AddEditScreen = props => {
             title: itemName,
             cost: itemCost,
             detail: itemDetail,
+            categoryID: categoryID,
             date: date,
             expenseDate: expenseDate,
             isBought: itemIsBought,
@@ -150,106 +154,114 @@ const AddEditScreen = props => {
         props.navigation.navigate('home-screen')
     }
 
+    const _onPress_Category = (id) => {
+        setCategoryID(id);
+    }
 
-    return (
-        <View style={styles.maincontainer}>
-            <StatusBar
+    
+
+        return (
+            <View style={styles.maincontainer}>
+                <StatusBar
                     backgroundColor="#FFFFFF"
                     barStyle="dark-content" />
-            <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 0, y: 1 }} 
-                            colors={["#FFFFFF", "#FFE1E1"]}
-                            style={styles.maincontainer}>
-                <TouchableOpacity style={styles.exitButtonContainer} onPress={_onPress_CloseModal}>
-                    <Svgs.CloseModalIcon width="40%" height="40%"></Svgs.CloseModalIcon>
-                </TouchableOpacity>
-                <View style={styles.categoriesButtonContainer}>
-                    <FlatList
-                    data={Categories}
-                    renderItem={({item}) => (
-                        <TouchableOpacity style={{width:75, height: 75, margin: 10, alignItems: 'center', justifyContent: 'center'}}>
-                            <Image source={item.image}
-                            ></Image>
-                            <Text style={{paddingTop: 10, color: 'grey'}}>{item.categoryName}</Text>
-                        </TouchableOpacity>
-                    )}
-                    horizontal={true}
-                    
-                    />
-                </View>
-                <View style={styles.container}>
-                    <View style={styles.leftContainer}>
-                        <Text style={styles.verticalTitle}>{loc.t(Texts.verticalTitle)}</Text>
+                <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 0, y: 1 }}
+                    colors={["#FFFFFF", "#FFE1E1"]}
+                    style={styles.maincontainer}>
+                    <TouchableOpacity style={styles.exitButtonContainer} onPress={_onPress_CloseModal}>
+                        <Svgs.CloseModalIcon width="40%" height="40%"></Svgs.CloseModalIcon>
+                    </TouchableOpacity>
+                    <View style={styles.categoriesButtonContainer}>
+                        <FlatList
+                            data={Categories}
+                            renderItem={({ item }) => (
+                                <TouchableOpacity 
+                                        onPress = {() => _onPress_Category(item.id)}
+                                        style={{ width: 75, height: 75, margin: 10, alignItems: 'center', justifyContent: 'center' }}>
+                                    <Image source={item.image}
+                                    ></Image>
+                                    <Text style={{ paddingTop: 10, color: 'grey' }}>{item.categoryName}</Text>
+                                </TouchableOpacity>
+                            )}
+                            horizontal={true}
+
+                        />
                     </View>
-                    <View style={styles.rightContainer}>
-                        
-                        
-                        <View style={styles.titleContainer}>
-                            <Text style={styles.costTitle}>{loc.t(Texts.expenseAmount)}</Text>
+                    <View style={styles.container}>
+                        <View style={styles.leftContainer}>
+                            <Text style={styles.verticalTitle}>{loc.t(Texts.verticalTitle)}</Text>
                         </View>
-                        <View style={styles.inputContainer}>
-                            <View style={styles.inputCostContainer}>
-                                <Text style={styles.tlIcon}>{loc.t(Texts.currency)}</Text>
-                                <TextInput style={styles.inputCost}
-                                      placeholderStyle={styles.inputCost}
-                                      value={itemCost}
-                                      onChangeText={setItemCost}
-                                      placeholder= '0'
-                                      placeholderTextColor="#BC0336"
-                                      keyboardType="number-pad" />
-                            </View>
-                            <View style={styles.inputInfoContainer}>
-                            <TextInput 
-                                value={itemName}
-                                onChangeText={setItemName}
-                                style={styles.input} 
-                                placeholder= {loc.t(Texts.itemName)}
-                                placeholderTextColor="rgba(0,0,0,0.3)"/>
-                            
-                             
+                        <View style={styles.rightContainer}>
 
-                            <TouchableOpacity onPress={showModeDate}>
-                            <TextInput
-                                    value={expenseDate}
-                                    onChangeText={setExpenseDate}
-                                    style={styles.input}
-                                    placeholder = {loc.t(Texts.date)}
-                                    placeholderTextColor="rgba(0,0,0,0.3)"
-                                    editable={false}
-                                
-                            />
-                                
-                                {show === true && (
-                                    <DateTimePicker
-                                        testID='datePicker'
-                                        value={date}
-                                        mode={mode}
-                                        display= "default"
-                                        onChange={onChangeDate}
-                                    />
-                                )}
-                                
-                                
-                            </TouchableOpacity>
-                            <TextInput 
-                                value={itemDetail}
-                                onChangeText={setItemDetail}
-                                style={styles.input} 
-                                placeholder={loc.t(Texts.description)}
-                                placeholderTextColor="rgba(0,0,0,0.3)"/>
+
+                            <View style={styles.titleContainer}>
+                                <Text style={styles.costTitle}>{loc.t(Texts.expenseAmount)}</Text>
                             </View>
+                            <View style={styles.inputContainer}>
+                                <View style={styles.inputCostContainer}>
+                                    <Text style={styles.tlIcon}>{loc.t(Texts.currency)}</Text>
+                                    <TextInput style={styles.inputCost}
+                                        placeholderStyle={styles.inputCost}
+                                        value={itemCost}
+                                        onChangeText={setItemCost}
+                                        placeholder='0'
+                                        placeholderTextColor="#BC0336"
+                                        keyboardType="number-pad" />
+                                </View>
+                                <View style={styles.inputInfoContainer}>
+
+                                    <TextInput
+                                        value={itemName}
+                                        onChangeText={setItemName}
+                                        style={styles.input}
+                                        placeholder={loc.t(Texts.itemName)}
+                                        placeholderTextColor="rgba(0,0,0,0.3)" />
+
+
+
+                                    <TouchableOpacity onPress={showModeDate}>
+                                        <TextInput
+                                            value={expenseDate}
+                                            onChangeText={setExpenseDate}
+                                            style={styles.input}
+                                            placeholder={loc.t(Texts.date)}
+                                            placeholderTextColor="rgba(0,0,0,0.3)"
+                                            editable={false}
+
+                                        />
+
+                                        {show === true && (
+                                            <DateTimePicker
+                                                testID='datePicker'
+                                                value={date}
+                                                mode={mode}
+                                                display="default"
+                                                onChange={onChangeDate}
+                                            />
+                                        )}
+
+
+                                    </TouchableOpacity>
+                                    <TextInput
+                                        value={itemDetail}
+                                        onChangeText={setItemDetail}
+                                        style={styles.input}
+                                        placeholder={loc.t(Texts.description)}
+                                        placeholderTextColor="rgba(0,0,0,0.3)" />
+                                </View>
+                            </View>
+                            <View style={styles.addButtonContainer}>
+                                <TouchableOpacity onPress={_onPress_AddEdit}>
+                                    <Svgs.AddButton></Svgs.AddButton>
+                                </TouchableOpacity>
+                            </View>
+
                         </View>
-                        <View style={styles.addButtonContainer}>
-                            <TouchableOpacity onPress={_onPress_AddEdit}>
-                                <Svgs.AddButton></Svgs.AddButton>
-                            </TouchableOpacity>
-                        </View>
-                        
                     </View>
-                </View>
 
-            </LinearGradient>
-       </View>         
-    );
-};
+                </LinearGradient>
+            </View>
+        );
+    };
 
-export default AddEditScreen;
+    export default AddEditScreen;
