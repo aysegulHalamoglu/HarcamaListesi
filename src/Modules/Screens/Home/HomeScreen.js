@@ -3,7 +3,7 @@ import { Animated, View, Text, FlatList, TouchableOpacity, StatusBar, ScrollView
 import LinearGradient from 'react-native-linear-gradient';
 import { useSelector } from 'react-redux';
 import { userSelector } from '../../Auth/Redux/UserRedux';
-import { useLocalization, Texts} from '../../Localization';
+import { useLocalization, Texts } from '../../Localization';
 //import { useDispatchChangeTheme, useTheme, useThemedValues, useThemedOption } from '../../Theming';
 //Components
 //import AddExpenseModal from './Components/AddExpenseModal';
@@ -14,19 +14,7 @@ import { Metrics, Fonts } from '../../Constants';
 import getStyles from './Styles/HomeScreenStyles';
 import AddEditScreen from './Components/AddEditScreen';
 import Modal from 'react-native-modal';
-import { useThemedStyles , colorNames , useThemedColors } from '../../Theming';
-
-
-
-
-/*
-   disabled font scale in particular places 
-
-   export function Text(props) {
-    return <ScaledText {...props} allowFontScaling={false} />;
-   }
-*/
-
+import { useThemedStyles, colorNames, useThemedColors } from '../../Theming';
 
 
 const HomeScreen = props => {
@@ -39,7 +27,7 @@ const HomeScreen = props => {
 
     const styles = useThemedStyles(getStyles);
     const Colors = useThemedColors(getStyles);
-    
+
     const loc = useLocalization();
 
     useEffect(() => {
@@ -54,7 +42,7 @@ const HomeScreen = props => {
     // Silme modu açıkken de silme modunu kapatsın.
     const _onPress_Add = () => {
         if (isDeleteModeOn) {
-            
+
             Animated.timing(
                 rotation,
                 {
@@ -94,7 +82,7 @@ const HomeScreen = props => {
 
     // Yeni ekle butonuna uzun basılınca silme modu açılsın
     const _onLongPress_Add = () => {
-        
+
         Animated.timing(
             rotation,
             {
@@ -113,7 +101,7 @@ const HomeScreen = props => {
                 style={styles.flatList}
                 onPress={() => _onPress_Edit(item)}
                 onLongPress={() => _onLongPress_Item(item)}>
-                
+
                 <View>
                     <Text style={styles.itemText}>{item.title}</Text>
                     <Text style={styles.itemDate}>{item.expenseDate}</Text>
@@ -143,79 +131,79 @@ const HomeScreen = props => {
     });
 
     return (
-        <>
-            <View style={styles.container}>
-                <StatusBar
-                    backgroundColor={Colors[colorNames.home.status]}
-                    barStyle="dark-content" />
-                <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 0, y: 1 }} colors={Colors[colorNames.home.background]}
-                            style={styles.container}>
 
-                    <View style={styles.stackContainer}>
-                        <View style={styles.profileContainer}>
-                            <Text style={styles.welcomeText}>{loc.t(Texts.welcome)}</Text>
-                            <Text style={styles.profileName}>{user.displayName}</Text>
+        <View style={styles.container}>
+            <StatusBar
+                backgroundColor={Colors[colorNames.home.status]}
+                barStyle="dark-content" />
+            <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 0, y: 1 }} colors={Colors[colorNames.home.background]}
+                style={styles.container}>
+
+                <View style={styles.stackContainer}>
+                    <View style={styles.profileContainer}>
+                        <Text style={styles.welcomeText}>{loc.t(Texts.welcome)}</Text>
+                        <Text style={styles.profileName}>{user.displayName}</Text>
+                    </View>
+                    <TouchableOpacity onPress={_onPress_Settings}>
+                        <View style={styles.settingsIcon}>
+                            <Svgs.SettingsIcon width="100%" height="100%"></Svgs.SettingsIcon>
                         </View>
-                        <TouchableOpacity onPress={_onPress_Settings}>
-                            <View style={styles.settingsIcon}>
-                                <Svgs.SettingsIcon width="100%" height="100%"></Svgs.SettingsIcon>
+                    </TouchableOpacity>
+                </View>
+                <View style={styles.accountContainer}>
+                    <TouchableOpacity onPress={_onPress_Calendar}>
+                        <LinearGradient
+                            start={{ x: 1, y: 0 }} end={{ x: 0, y: 1 }} colors={Colors[colorNames.home.card]}
+                            style={styles.budgetCard}>
+                            <View style={styles.topCardContainer}>
+                                <Text style={{ fontSize: Fonts.Sizes.twentytwo, color: 'white', fontFamily: Fonts.Families.semibold }}>{loc.t(Texts.totalBudget)} </Text>
+                                <Text style={{ fontSize: Fonts.Sizes.thirty, color: 'white', fontFamily: Fonts.Families.semibold }}>₺ 860.00</Text>
                             </View>
-                        </TouchableOpacity>
-                    </View>
-                    <View style={styles.accountContainer}>
-                        <TouchableOpacity onPress={_onPress_Calendar}>
-                            <LinearGradient
-                                start={{ x: 1, y: 0 }} end={{ x: 0, y: 1 }} colors={Colors[colorNames.home.card]}
-                                style={styles.budgetCard}>
-                                <View style={styles.topCardContainer}>
-                                    <Text style={{ fontSize: Fonts.Sizes.twentytwo, color: 'white', fontFamily: Fonts.Families.semibold }}>{loc.t(Texts.totalBudget)} </Text>
-                                    <Text style={{  fontSize: Fonts.Sizes.thirty, color: 'white', fontFamily: Fonts.Families.semibold }}>₺ 860.00</Text>
+                            <View style={styles.bottomCardContainer}>
+                                <View style={styles.incomeExpenseContainer}>
+                                    <Text style={{ fontSize: Fonts.Sizes.eighteen, color: 'white', fontFamily: Fonts.Families.semibold }}>{loc.t(Texts.income)} </Text>
+                                    <Text style={{ fontSize: Fonts.Sizes.twentytwo, color: 'white', fontFamily: Fonts.Families.semibold }}>₺ 1580.00</Text>
                                 </View>
-                                <View style={styles.bottomCardContainer}>
-                                    <View style={styles.incomeExpenseContainer}>
-                                        <Text style={{ fontSize: Fonts.Sizes.eighteen, color: 'white', fontFamily: Fonts.Families.semibold }}>{loc.t(Texts.income)} </Text>
-                                        <Text style={{  fontSize: Fonts.Sizes.twentytwo, color: 'white', fontFamily: Fonts.Families.semibold }}>₺ 1580.00</Text>
-                                    </View>
-                                    <View style={styles.incomeExpenseContainer}>
-                                        <Text style={{ fontSize: Fonts.Sizes.eighteen, color: 'white', fontFamily: Fonts.Families.semibold }}>{loc.t(Texts.expense)} </Text>
-                                        <Text style={{  fontSize: Fonts.Sizes.twentytwo, color: 'white', fontFamily: Fonts.Families.semibold }}>₺ 720.00</Text>
-                                    </View>
+                                <View style={styles.incomeExpenseContainer}>
+                                    <Text style={{ fontSize: Fonts.Sizes.eighteen, color: 'white', fontFamily: Fonts.Families.semibold }}>{loc.t(Texts.expense)} </Text>
+                                    <Text style={{ fontSize: Fonts.Sizes.twentytwo, color: 'white', fontFamily: Fonts.Families.semibold }}>₺ 720.00</Text>
                                 </View>
+                            </View>
 
-                            </LinearGradient>
+                        </LinearGradient>
 
-                        </TouchableOpacity>
-                    </View>
-                    <View style={styles.titleContainer}>
-                        <Text style={styles.titleText}>{loc.t(Texts.headerExpenses)} </Text>
-                    </View>
-                    <View style={styles.flatListContainer}>
-                        <FlatList                             
-                            data={itemList}
-                            renderItem={_renderItem}
-                            keyExtractor={item => item.key}
-                            ListFooterComponent={() => <Text> </Text>}
-                        />
-                    </View>
-                    <View style={styles.tabNavigationContainer}>
-                        <Svgs.MenuIcon width="40%" height="40%"></Svgs.MenuIcon>
-                        <TouchableOpacity
-                            onPress={_onPress_Add}
-                            onLongPress={_onLongPress_Add}
-                            >
-                            <Animated.View style={[styles.addButtonContainer,
-                                    {
-                                        transform: [{rotate: interpolatedRotation}]
-                                    }]}>
-                                <Svgs.AddIcon width="100%" height="100%" fill="#dd0000"></Svgs.AddIcon>
-                            </Animated.View>
-                        </TouchableOpacity>
-                        <Svgs.ChartTabIcon width="40%" height="40%"></Svgs.ChartTabIcon>
-                        </View>
-                    
-                </LinearGradient>
-            </View>
-        </>
+                    </TouchableOpacity>
+                </View>
+                <View style={styles.titleContainer}>
+                    <Text style={styles.titleText}>{loc.t(Texts.headerExpenses)} </Text>
+                </View>
+                <View style={styles.flatListContainer}>
+                    <FlatList
+                        data={itemList}
+                        renderItem={_renderItem}
+                        keyExtractor={item => item.key}
+                        ListFooterComponent={() => <Text> </Text>}
+                    />
+                </View>
+                <View style={styles.tabNavigationContainer}>
+                    <Svgs.MenuIcon width="40%" height="40%"></Svgs.MenuIcon>
+                    <TouchableOpacity
+                        onPress={_onPress_Add}
+                        onLongPress={_onLongPress_Add}
+                    >
+                        <Animated.View style={[styles.addButtonContainer,
+                        {
+                            transform: [{ rotate: interpolatedRotation }]
+                        }]}>
+                            <Svgs.AddIcon width="100%" height="100%" fill="#dd0000"></Svgs.AddIcon>
+                        </Animated.View>
+                    </TouchableOpacity>
+                    <Svgs.ChartTabIcon width="40%" height="40%"></Svgs.ChartTabIcon>
+                </View>
+
+            </LinearGradient>
+        </View>
+
     )
 }
 
