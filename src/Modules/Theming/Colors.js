@@ -18,6 +18,7 @@ export const constantColors = {
         4: '#202020',
         5: '#707070',
         6: '#53515A',
+        7: '#BABABA',  
         
     },
 
@@ -85,6 +86,7 @@ const toRGBA = (hexCode, opacity) => {
         inputText: 'auth/inputText',
         inputPlaceholder: 'auth/inputPlaceholder',
         coloredButtonBackground: 'auth/coloredButtonBackground',
+        coloredButtonBorder: 'auth/coloredButtonBorder',
         coloredButtonText: 'auth/coloredButtonText',
         paleButtonBackground: 'auth/paleButtonBackground',
         signupText: 'auth/signupText',
@@ -152,16 +154,17 @@ const toRGBA = (hexCode, opacity) => {
 
 export const darkColors = {
     // auth
-    [auth.background]: constantColors.backgrounds[2],
+    [auth.background]: constantColors.backgrounds[3],
     [auth.status]: constantColors.status[3] ,
     [auth.inputBorder]: constantColors.transparent,
     [auth.inputBackground]: toRGBA(constantColors.greys[1], 10),
-    [auth.inputText]: constantColors.greys[1],
-    [auth.inputPlaceholder]: toRGBA(constantColors.greys[1], 40),
-    [auth.coloredButtonBackground]: constantColors.greys[1],
+    [auth.inputText]: constantColors.greys[7],
+    [auth.inputPlaceholder]: toRGBA(constantColors.greys[2], 40),
+    [auth.coloredButtonBackground]: constantColors.transparent,
+    [auth.coloredButtonBorder]: constantColors.mainColor3,
     [auth.coloredButtonText]: constantColors.white,
     [auth.paleButtonBackground]: constantColors.transparent,
-    [auth.signupText]: constantColors.greys[1],
+    [auth.signupText]: constantColors.white,
    
     // home
     [home.background]:constantColors.backgrounds[3],
@@ -225,6 +228,7 @@ export const lightColors = {
     [auth.inputPlaceholder]:constantColors.text.pink,
     [auth.coloredButtonBackground]: constantColors.buttonContainer.orange,
     [auth.coloredButtonText]: constantColors.text.pink,
+    [auth.coloredButtonBorder]: constantColors.transparent,
     [auth.paleButtonBackground]: constantColors.transparent,
     [auth.signupText]: constantColors.white,
    

@@ -10,7 +10,7 @@ const AuthButton = (props) => {
     const {colors, styles} = useThemedValues(getStyles);
     return (
         <BorderedBox
-            borderColor={colors[colorNames.auth.inputBorder]}
+            borderColor={colors[colorNames.auth.coloredButtonBorder]}
             backgroundColor={colors[colorNames.auth.coloredButtonBackground]}>
             <TouchableOpacity
                 style={styles.touchable}

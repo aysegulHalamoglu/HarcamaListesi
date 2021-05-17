@@ -5,7 +5,7 @@ import { Metrics} from '../../Constants';
 const styles = StyleSheet.create({
     container: {
         borderRadius: Metrics.borderRadiusStandard,
-        borderWidth: 1,
+        borderWidth: 2,
     },
     normalHeight: {
         height: Metrics.boxNormalHeight,
