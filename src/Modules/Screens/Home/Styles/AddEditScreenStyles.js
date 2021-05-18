@@ -48,6 +48,7 @@ export default StyleSheet.create({
         margin: 10,
         alignItems: 'center',
         justifyContent: 'center',
+        opacity: 0.5,
     },
     titleContainer:{
         flex: 1,

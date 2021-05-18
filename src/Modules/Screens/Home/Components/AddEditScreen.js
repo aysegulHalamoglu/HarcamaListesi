@@ -84,7 +84,7 @@ const AddEditScreen = props => {
     const [show, setShow] = useState(false);
     const [expenseDate, setExpenseDate] = useState('');
     const [itemIsBought, setItemIsBought] = useState(false);
-    //const [isSelectedCategoryID, setIsSelectedCategoryID] = useState(false);
+    const [isSelectedCategoryID, setIsSelectedCategoryID] = useState(!false);
 
     const loc = useLocalization();
 
@@ -168,6 +168,8 @@ const AddEditScreen = props => {
 
     const _onPress_Category = (id) => {
         setCategoryID(id);
+        setIsSelectedCategoryID(!false) ? {opacity: 1} : null; 
+
     }
 
 
