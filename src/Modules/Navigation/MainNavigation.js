@@ -6,8 +6,7 @@ import AuthNavigation from './AuthNavigation';
 import { useSelector } from 'react-redux';
 import { userSelector } from '../../Modules/Auth/Redux/UserRedux';
 import { colorNames, ThemeModes, useTheme, useThemedColors } from '../Theming';
-import CalendarScreen from '../Screens/Calendar/CalendarScreen';
-import SettingsNavigation from './SettingsNavigation';
+
 
 const MainNavigation = (props) => {
     const loggedInUser = useSelector(userSelector);

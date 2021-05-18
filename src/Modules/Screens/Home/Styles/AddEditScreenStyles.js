@@ -8,45 +8,55 @@ export default StyleSheet.create({
         flexDirection: 'column',
     },
     exitButtonContainer: {
-        flex: 0.05,
-        //backgroundColor: 'yellow',
+        flex: 0.35,
         alignItems: 'center',
         justifyContent: 'center',
+        //backgroundColor: 'yellow',
     },
     container: {
-        flex: 1,
+        flex: 5,
         flexDirection: 'row',
         justifyContent: 'center',
+        //backgroundColor: 'green',
     },    
     // VERTICAL TITLE CONTAINER
     leftContainer: {
-        flex: 0.75,
-        //backgroundColor: 'green',
+        flex: 1,
         alignItems: 'center',
         opacity: 0.2,
+        //backgroundColor: 'green',
     },
     // RIGHT CONTAINER
     rightContainer: {
-        flex: 2,        
+        flex: 3,        
         flexDirection: 'column',
         //backgroundColor: 'blue',
     },
     // CONTENT CONTAINERS
     categoriesButtonContainer: {
-        flex: 0.15,
-        //backgroundColor: 'red',
+        flex: 1,
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'flex-end',
+        justifyContent: 'center',
+        paddingVertical:Metrics.paddingVertical,
+        //backgroundColor: 'red',
     },
-    titleContainer:{
-        marginTop: Metrics.width * 0.1,
-        flex: 0.05,
-        //backgroundColor: 'orange',
+
+    categoryTouchable: {
+        width: 75,
+        height: 75,
+        margin: 10,
+        alignItems: 'center',
         justifyContent: 'center',
     },
+    titleContainer:{
+        flex: 1,
+        justifyContent: 'center',
+        //backgroundColor: 'orange',
+    },
     inputContainer: {
-        flex: 0.75,        
+        flex: 5,    
+        flexDirection: 'column',
         //backgroundColor: 'white',
     },
     addButtonContainer: {
@@ -57,16 +67,14 @@ export default StyleSheet.create({
         //backgroundColor: 'purple',
     },
     inputCostContainer: {
-        marginTop: Metrics.width * 0.15,
-        marginBottom: Metrics.width * 0.15,
-        flex: 0.5,
+        flex: 3,
         justifyContent: 'center',
         alignItems: 'center',
-        //backgroundColor: 'lime',
         flexDirection: 'row',
+        //backgroundColor: 'lime',
     },
     inputInfoContainer: {
-        flex: 0.5,
+        flex:4,
         //backgroundColor: 'black',
     },
 
@@ -78,7 +86,7 @@ export default StyleSheet.create({
         transform: [{rotate: '-90deg'}],
         width: Metrics.height,
         color: 'red',
-        marginTop: Metrics.width * 0.30,
+        marginTop: Metrics.width * 0.25,
     },
     categoryTitle: {
         fontFamily: Fonts.Families.bold,
@@ -104,7 +112,7 @@ export default StyleSheet.create({
     },
     input: {
         fontFamily: Fonts.Families.semibold,
-        fontSize: Fonts.Sizes.fourty,
+        fontSize: Fonts.Sizes.thirty,
         color: 'grey',
     },
     

@@ -1,5 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { KeyboardAvoidingView, SafeAreaView, ScrollView, Text, TextInput, TouchableOpacity, View, StatusBar, Platform, FlatList, Image } from 'react-native';
+import {
+    KeyboardAvoidingView,
+    SafeAreaView,
+    Text,
+    TextInput,
+    TouchableOpacity,
+    View,
+    StatusBar,
+    Platform,
+    FlatList,
+    Image
+} from 'react-native';
 
 import LinearGradient from 'react-native-linear-gradient';
 import { addItem, getItemDetail, updateItem } from '../API/Firebase';
@@ -8,7 +19,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import moment from 'moment';
 
 //Assets
-import { Svgs } from '../../../Constants';
+import { Fonts, Svgs } from '../../../Constants';
 import styles from '../Styles/AddEditScreenStyles';
 
 
@@ -73,6 +84,7 @@ const AddEditScreen = props => {
     const [show, setShow] = useState(false);
     const [expenseDate, setExpenseDate] = useState('');
     const [itemIsBought, setItemIsBought] = useState(false);
+    //const [isSelectedCategoryID, setIsSelectedCategoryID] = useState(false);
 
     const loc = useLocalization();
 
@@ -158,35 +170,42 @@ const AddEditScreen = props => {
         setCategoryID(id);
     }
 
-    
 
-        return (
-            <View style={styles.maincontainer}>
+
+    return (
+        <View style={styles.maincontainer}>
+            <KeyboardAvoidingView style = {{flex:1}}>
                 <StatusBar
                     backgroundColor="#FFFFFF"
                     barStyle="dark-content" />
                 <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 0, y: 1 }}
                     colors={["#FFFFFF", "#FFE1E1"]}
                     style={styles.maincontainer}>
+
+
                     <TouchableOpacity style={styles.exitButtonContainer} onPress={_onPress_CloseModal}>
                         <Svgs.CloseModalIcon width="40%" height="40%"></Svgs.CloseModalIcon>
                     </TouchableOpacity>
+
+
                     <View style={styles.categoriesButtonContainer}>
                         <FlatList
                             data={Categories}
                             renderItem={({ item }) => (
-                                <TouchableOpacity 
-                                        onPress = {() => _onPress_Category(item.id)}
-                                        style={{ width: 75, height: 75, margin: 10, alignItems: 'center', justifyContent: 'center' }}>
+                                <TouchableOpacity
+                                    onPress={() => _onPress_Category(item.id)}
+                                    style={styles.categoryTouchable}>
                                     <Image source={item.image}
                                     ></Image>
-                                    <Text style={{ paddingTop: 10, color: 'grey' }}>{item.categoryName}</Text>
+                                    <Text style={{ paddingTop: 10, color: 'grey', fontSize: Fonts.Sizes.twelve }}>{item.categoryName}</Text>
                                 </TouchableOpacity>
                             )}
                             horizontal={true}
-
                         />
+
                     </View>
+
+
                     <View style={styles.container}>
                         <View style={styles.leftContainer}>
                             <Text style={styles.verticalTitle}>{loc.t(Texts.verticalTitle)}</Text>
@@ -197,6 +216,7 @@ const AddEditScreen = props => {
                             <View style={styles.titleContainer}>
                                 <Text style={styles.costTitle}>{loc.t(Texts.expenseAmount)}</Text>
                             </View>
+
                             <View style={styles.inputContainer}>
                                 <View style={styles.inputCostContainer}>
                                     <Text style={styles.tlIcon}>{loc.t(Texts.currency)}</Text>
@@ -208,6 +228,7 @@ const AddEditScreen = props => {
                                         placeholderTextColor="#BC0336"
                                         keyboardType="number-pad" />
                                 </View>
+
                                 <View style={styles.inputInfoContainer}>
 
                                     <TextInput
@@ -220,6 +241,7 @@ const AddEditScreen = props => {
 
 
                                     <TouchableOpacity onPress={showModeDate}>
+
                                         <TextInput
                                             value={expenseDate}
                                             onChangeText={setExpenseDate}
@@ -242,13 +264,16 @@ const AddEditScreen = props => {
 
 
                                     </TouchableOpacity>
+
                                     <TextInput
                                         value={itemDetail}
                                         onChangeText={setItemDetail}
                                         style={styles.input}
                                         placeholder={loc.t(Texts.description)}
                                         placeholderTextColor="rgba(0,0,0,0.3)" />
+
                                 </View>
+
                             </View>
                             <View style={styles.addButtonContainer}>
                                 <TouchableOpacity onPress={_onPress_AddEdit}>
@@ -260,8 +285,9 @@ const AddEditScreen = props => {
                     </View>
 
                 </LinearGradient>
-            </View>
-        );
-    };
+            </KeyboardAvoidingView>
+        </View>
+    );
+};
 
-    export default AddEditScreen;
+export default AddEditScreen;

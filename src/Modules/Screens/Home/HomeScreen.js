@@ -6,14 +6,12 @@ import { userSelector } from '../../Auth/Redux/UserRedux';
 import { useLocalization, Texts } from '../../Localization';
 //import { useDispatchChangeTheme, useTheme, useThemedValues, useThemedOption } from '../../Theming';
 //Components
-//import AddExpenseModal from './Components/AddExpenseModal';
 import { addItem, deleteItem, subscribeToItemData, updateItem } from './API/Firebase';
 //Assets-Styling
 import { Svgs } from '../../Constants/'
 import { Metrics, Fonts } from '../../Constants';
 import getStyles from './Styles/HomeScreenStyles';
 import AddEditScreen from './Components/AddEditScreen';
-import Modal from 'react-native-modal';
 import { useThemedStyles, colorNames, useThemedColors } from '../../Theming';
 
 

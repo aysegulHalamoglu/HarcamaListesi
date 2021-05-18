@@ -8,7 +8,6 @@ import HomeScreen from '../Screens/Home/HomeScreen';
 import AddEditScreen from '../Screens/Home/Components/AddEditScreen';
 
 //component imports
-import AddExpenseModal from '../Screens/Home/Components/AddExpenseModal';
 
 
 import { useLocalization, Texts } from '../Localization';
